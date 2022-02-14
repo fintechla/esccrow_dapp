@@ -4,18 +4,21 @@ export const Container = styled.div`
   width: 100%;
   background-color: ${props => props.theme.reminderBackground};
   border-radius: 10px;
-  padding:1rem 0 1rem 2rem;
   color: ${props => props.theme.reminderColor};
-  margin: 2rem;
+  margin: 10px;
 `
 
 export const Title = styled.h1`
+  padding:1rem 0 1rem 2rem;
 `
 
 export const List = styled.ul`
   list-style-type: disc;
-  padding:2rem ;
+  padding:0 0 2rem 4rem;
 `
+export const ListItem = styled.li`
+`
+
 export const Small = styled.h2`
   font-size:1.2rem;
 `

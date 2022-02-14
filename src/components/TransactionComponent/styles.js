@@ -4,8 +4,8 @@ export const Container = styled.div`
   width: 100%;
   box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.28);
   border-radius: 10px;
-  margin: 2rem;
   background-color: ${props => props.theme.formBackground};
+  margin: 10px;
 `
 
 export const UserType = styled.section`
