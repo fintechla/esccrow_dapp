@@ -13,6 +13,10 @@ import { ThemeProviderContext } from '../../contexts/ThemeContext'
 
 import { NavBarComponent } from '../../components/NavBarComponent'
 import { FooterComponent } from '../../components/FooterComponent'
+import { HeroComponent } from '../../components/HeroComponent'
+import { ReminderComponent } from '../../components/ReminderComponent'
+import { TransactionComponent } from '../../components/TransactionComponent'
+
 import { Container, Main, Hero, Card, Info, Title, Small } from './styles'
 
 export function Landing() {
@@ -20,14 +24,11 @@ export function Landing() {
     if (!window.walletConnection.isSignedIn()) {
         return (
             <Container>
-                <NavBarComponent actionButton={login} logo={logo} nearLogo={nearLogo} connectWallet={connectWallet} darkMode={darkMode} themeToggler={themeToggler}/>
+                <NavBarComponent actionButton={login} logo={logo} nearLogo={nearLogo} connectWallet={connectWallet} darkMode={darkMode} themeToggler={themeToggler} />
                 <Main>
-                    <Hero>
-                        <Title>Easiest, safest and most decentralized <br></br> way to buy and sells NFTs </Title>
-                        <Small>The best way to send and receive NFT with Escrow <br></br>Protection</Small>
-                    </Hero>
-                    <Card>card</Card>
-                    <Info>reminder</Info>
+                    <HeroComponent />
+                    <TransactionComponent />
+                    <ReminderComponent />
                 </Main>
                 <FooterComponent />
             </Container>
