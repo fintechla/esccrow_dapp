@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Container, UserType, UserTypeAction, CallToAction, ActionAddress, ActionSend } from './styles'
-import NearMain from './nearMain.svg'
+import NearMain from './NearMain.svg'
 export const TransactionComponent = () => {
     return (
         <Container>
