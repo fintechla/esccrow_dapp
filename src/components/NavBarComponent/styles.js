@@ -79,4 +79,7 @@ export const DarkModeContainer = styled.section`
   height: 1.5rem;
   background-color: ${props => props.theme.shadowColorNear};
   border-radius:10px;
+  &:hover{
+    background-color:rgba(0, 134, 255, .5);
+  }
 `
