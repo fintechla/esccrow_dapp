@@ -10,8 +10,10 @@ export const Hero = styled.section`
 `
 export const Title = styled.h1`
   font-size:2.5rem;
-  color: #1A237E;
+  color: ${props => props.theme.reminderColor};
 `
 export const Small = styled.h2`
+  font-family: 'suisse', sans-serif;
   font-size:1.2rem;
+  color: ${props => props.theme.reminderColor}
 `

@@ -44,6 +44,11 @@ table {
 
 @import url('https://fonts.googleapis.com/css2?family=Exo:wght@500&display=swap');
 
+@font-face {
+	font-family: "suisse";
+	src: local('suisse'), url("./assets/suisse/SuisseIntl-Regular.otf")format('truetype');
+ }
+
 body {
 	height: 100vh;
 }

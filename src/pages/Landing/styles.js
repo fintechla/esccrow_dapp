@@ -9,7 +9,7 @@ export const Container = styled.div`
 
 export const Main = styled.main`
   justify-self:center;
-  width: 50%;
+  width: 43%;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;

@@ -6,6 +6,7 @@ export const Container = styled.div`
   border-radius: 10px;
   color: ${props => props.theme.reminderColor};
   margin: 10px;
+  font-family: 'suisse', sans-serif;
 `
 
 export const Title = styled.h1`
