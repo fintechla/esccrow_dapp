@@ -13,38 +13,25 @@ import { ThemeProviderContext } from '../../contexts/ThemeContext'
 
 import { NavBarComponent } from '../../components/NavBarComponent'
 import { FooterComponent } from '../../components/FooterComponent'
-import { HeroComponent } from '../../components/HeroComponent'
-import { ReminderComponent } from '../../components/ReminderComponent'
-import { TransactionComponent } from '../../components/TransactionComponent'
+import { MainComponent } from '../../components/MainComponent'
 
-import { Container, Main, Hero, Card, Info, Title, Small } from './styles'
+import { Container, Main } from './styles'
 
 export function Landing() {
-    const { themeToggler } = useContext(ThemeProviderContext)
+    const { themeToggler,Icon } = useContext(ThemeProviderContext)
     if (!window.walletConnection.isSignedIn()) {
         return (
             <Container>
-                <NavBarComponent actionButton={login} logo={logo} nearLogo={nearLogo} connectWallet={connectWallet} darkMode={darkMode} themeToggler={themeToggler} />
-                <Main>
-                    <HeroComponent />
-                    <TransactionComponent />
-                    <ReminderComponent />
-                </Main>
+                <NavBarComponent actionButton={login} logo={logo} nearLogo={nearLogo} connectWallet={connectWallet} darkMode={Icon} themeToggler={themeToggler} />
+                <MainComponent />
                 <FooterComponent />
             </Container>
         )
     }
     return (
         <Container>
-            <NavBarComponent actionButton={logout} logo={logo} nearLogo={nearLogo} connectWallet={connectWallet} darkMode={darkMode} />
-            <Main>
-                <Hero>
-                    <Title>Easiest, safest and most decentralized <br></br> way to buy and sells NFTs </Title>
-                    <Small>The best way to send and receive NFT with Escrow <br></br>Protection</Small>
-                </Hero>
-                <Card>card</Card>
-                <Info>reminder</Info>
-            </Main>
+            <NavBarComponent actionButton={login} logo={logo} nearLogo={nearLogo} connectWallet={connectWallet} darkMode={darkMode} themeToggler={themeToggler} />
+            <MainComponent />
             <FooterComponent />
         </Container>
     )

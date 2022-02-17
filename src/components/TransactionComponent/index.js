@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Container, UserType, UserTypeAction, CallToAction, ActionAddress, ActionSend } from './styles'
+import { Container, UserType, UserTypeAction, CallToAction, ActionAddress, ActionSend, TransactionButton,CallTransactionButton } from './styles'
 import NearMain from './NearMain.svg'
 export const TransactionComponent = () => {
     return (
@@ -17,6 +17,9 @@ export const TransactionComponent = () => {
                 <ActionSend>For</ActionSend>
                 <img src={NearMain}></img>
             </CallToAction>
+            <CallTransactionButton>
+                <TransactionButton>Begin transaction</TransactionButton>
+            </CallTransactionButton>
         </Container>
     )
 }

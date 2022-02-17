@@ -7,7 +7,7 @@ export const NavBarComponent = ({ actionButton, logo, nearLogo, connectWallet, d
         <ContainerNavBar>
             <NavBar>
                 <Logo>
-                    <img src={logo} />
+                    <img src={logo}/>
                     <LogoTitle>ESCCROW</LogoTitle>
                 </Logo>
                 <MenuNav>

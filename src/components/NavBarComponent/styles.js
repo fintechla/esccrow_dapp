@@ -2,33 +2,35 @@ import styled from 'styled-components'
 
 export const ContainerNavBar = styled.nav`
   box-shadow: ${props => props.theme.shadowColor};
-  display: grid;
-  font-family: 'suisse', sans-serif;
+  display: flex;
+  font-family: 'suisseThin;', sans-serif;
+  padding: 1rem 0;
 `
 
 export const NavBar = styled.nav`
-  display: grid;
   width:80%;
+  display: flex;
   margin:auto;
-  grid-template-columns: auto auto auto;
-  grid-template-rows: 1fr;
+  justify-content:space-between;
+  align-items: center;
 `
+
 export const Logo = styled.section`
   display: flex;
-  align-items:center;
+  align-items: center;
   gap:1rem;
 `
 export const LogoTitle = styled.section`
   font-size:2.5rem;
-  color: ${props => props.theme.color};
+  color: ${props => props.theme.ColorNear};
 `
 
 export const MenuNav = styled.section`
   display: flex;
-  justify-content:center;
-  align-items:center;
   gap:2rem;
-  font-family: 'Exo', sans-serif;
+  align-items: center;
+  color: ${props => props.theme.ColorNear};
+  font-family: "suisse";
 `
 
 export const MenuNear = styled.section`

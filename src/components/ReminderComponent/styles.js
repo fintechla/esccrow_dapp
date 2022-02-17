@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  width: 100%;
+  width: 740px;
+  margin: 0 auto;
   background-color: ${props => props.theme.reminderBackground};
   border-radius: 10px;
   color: ${props => props.theme.reminderColor};
-  margin: 10px;
   font-family: 'suisse', sans-serif;
 `
 

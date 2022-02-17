@@ -1,12 +1,10 @@
 import styled from 'styled-components'
 
 export const Hero = styled.section`
-  padding:1rem;
-  justify-self:center;
-  font-family: 'Exo', sans-serif;
-  text-align:center;
+  font-family: 'suisse', sans-serif;
   display: grid;
-  gap:10px;
+  gap:1rem;
+  text-align: center;
 `
 export const Title = styled.h1`
   font-size:2.5rem;
@@ -15,5 +13,5 @@ export const Title = styled.h1`
 export const Small = styled.h2`
   font-family: 'suisse', sans-serif;
   font-size:1.2rem;
-  color: ${props => props.theme.reminderColor}
+  color: ${props => props.theme.footerColor}
 `

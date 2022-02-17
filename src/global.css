@@ -47,7 +47,12 @@ table {
 @font-face {
 	font-family: "suisse";
 	src: local('suisse'), url("./assets/suisse/SuisseIntl-Regular.otf")format('truetype');
- }
+}
+
+@font-face {
+	font-family: "suisseThin";
+	src: local('suisse'), url("./assets/suisse/SuisseIntl-Thin.otf")format('truetype');
+}
 
 body {
 	height: 100vh;
