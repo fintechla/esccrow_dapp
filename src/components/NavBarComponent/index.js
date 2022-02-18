@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ContainerNavBar, NavBar, Logo, LogoTitle, NearLogoContainer, NearTitle, WalletLogoContainer, WalletTitle, MenuNav, MenuNear,DarkModeContainer } from './styles'
+import { ContainerNavBar, NavBar, Logo, LogoTitle, NearLogoContainer, NearTitle,MenuItem, WalletLogoContainer, WalletTitle, MenuNav, MenuNear,DarkModeContainer } from './styles'
 
 export const NavBarComponent = ({ actionButton, logo, nearLogo, connectWallet, darkMode, themeToggler }) => {
     return (
@@ -8,13 +8,13 @@ export const NavBarComponent = ({ actionButton, logo, nearLogo, connectWallet, d
             <NavBar>
                 <Logo>
                     <img src={logo}/>
-                    <LogoTitle>ESCCROW</LogoTitle>
+                    <LogoTitle>esccrow</LogoTitle>
                 </Logo>
                 <MenuNav>
-                    <div>Home</div>
-                    <div>About</div>
-                    <div>Community</div>
-                    <div>Support</div>
+                    <MenuItem>Home</MenuItem>
+                    <MenuItem>About</MenuItem>
+                    <MenuItem>Community</MenuItem>
+                    <MenuItem>Support</MenuItem>
                 </MenuNav>
                 <MenuNear>
                     <NearLogoContainer>

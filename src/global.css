@@ -54,6 +54,11 @@ table {
 	src: local('suisse'), url("./assets/suisse/SuisseIntl-Thin.otf")format('truetype');
 }
 
+@font-face {
+	font-family: "lightFont";
+	src: local('lightFont'), url("./assets/light.ttf")format('truetype');
+}
+
 body {
 	height: 100vh;
 }

@@ -22,15 +22,20 @@ export const Logo = styled.section`
 `
 export const LogoTitle = styled.section`
   font-size:2.5rem;
+  font-family:"lightFont" ;
   color: ${props => props.theme.ColorNear};
 `
 
 export const MenuNav = styled.section`
   display: flex;
-  gap:2rem;
+  gap:8rem;
   align-items: center;
   color: ${props => props.theme.ColorNear};
   font-family: "suisse";
+`
+export const MenuItem = styled.section`
+  font-style: normal;
+  font-weight: 450;
 `
 
 export const MenuNear = styled.section`

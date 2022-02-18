@@ -1,25 +1,37 @@
 import React from 'react'
 
-import { Container, UserType, UserTypeAction, CallToAction, ActionAddress, ActionSend, TransactionButton,CallTransactionButton } from './styles'
+import { Container, UserType, UserTypeAction, WrapperUserType,InputAction, WrapperAction, CallToAction, ActionAddress, ActionSend, TransactionButton, CallTransactionButton } from './styles'
 import NearMain from './NearMain.svg'
 export const TransactionComponent = () => {
     return (
         <Container>
             <UserType>
-                <UserTypeAction>Buy</UserTypeAction>
-                <UserTypeAction>Sell</UserTypeAction>
+                <WrapperUserType>
+                    <UserTypeAction>Buy</UserTypeAction>
+                </WrapperUserType>
+                <WrapperUserType>
+                    <UserTypeAction>Sell</UserTypeAction>
+                </WrapperUserType>
             </UserType>
-            <CallToAction>
-                <ActionAddress>I will buy</ActionAddress>
-                <img src={NearMain}></img>
-            </CallToAction>
-            <CallToAction>
-                <ActionSend>For</ActionSend>
-                <img src={NearMain}></img>
-            </CallToAction>
-            <CallTransactionButton>
-                <TransactionButton>Begin transaction</TransactionButton>
-            </CallTransactionButton>
+            <WrapperAction>
+                <CallToAction>
+                    <ActionAddress>
+                        <label>I will buy</label>
+                        <InputAction type="text" placeholder='Contract address'></InputAction>
+                    </ActionAddress>
+                    <img src={NearMain}></img>
+                </CallToAction>
+                <CallToAction>
+                    <ActionAddress>
+                        <label>For</label>
+                        <InputAction type="text" placeholder='0.0'></InputAction>
+                    </ActionAddress>
+                    <img src={NearMain}></img>
+                </CallToAction>
+                <CallTransactionButton>
+                    <TransactionButton>Begin transaction</TransactionButton>
+                </CallTransactionButton>
+            </WrapperAction>
         </Container>
     )
 }
