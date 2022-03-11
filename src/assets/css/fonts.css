@@ -1,0 +1,110 @@
+/* Ultra Light */
+
+@font-face {
+    font-family: 'SuiseIntl';
+    src: url('../fonts/suisse/SuisseIntl-Ultralight.otf');
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: 'SuiseIntl';
+    src: url('../fonts/suisse/SuisseIntl-UltralightItalic.otf');
+    font-weight: 100;
+    font-style: italic;
+}
+
+/* Thin */
+
+@font-face {
+    font-family: 'SuiseIntl';
+    src: url('../fonts/suisse/SuisseIntl-Thin.otf');
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: 'SuiseIntl';
+    src: url('../fonts/suisse/SuisseIntl-ThinItalic.otf');
+    font-weight: 200;
+    font-style: italic;
+}
+
+/* Light */
+
+@font-face {
+    font-family: 'SuiseIntl';
+    src: url('../fonts/suisse/SuisseIntl-Light.otf');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'SuiseIntl';
+    src: url('../fonts/suisse/SuisseIntl-LightItalic.otf');
+    font-weight: 300;
+    font-style: italic;
+}
+
+/* Regular */
+
+@font-face {
+    font-family: 'SuiseIntl';
+    src: url('../fonts/suisse/SuisseIntl-Regular.otf');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'SuiseIntl';
+    src: url('../fonts/suisse/SuisseIntl-RegularItalic.otf');
+    font-weight: 400;
+    font-style: italic;
+}
+
+
+/* Medium */
+
+@font-face {
+    font-family: 'SuiseIntl';
+    src: url('../fonts/suisse/SuisseIntl-Medium.otf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'SuiseIntl';
+    src: url('../fonts/suisse/SuisseIntl-MediumItalic.otf');
+    font-weight: 500;
+    font-style: italic;
+}
+
+/* Semi bold */
+
+@font-face {
+    font-family: 'SuiseIntl';
+    src: url('../fonts/suisse/SuisseIntl-SemiBold.otf');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'SuiseIntl';
+    src: url('../fonts/suisse/SuisseIntl-SemiBoldItalic.otf');
+    font-weight: 600;
+    font-style: italic;
+}
+
+/* Bold */
+
+@font-face {
+    font-family: 'SuiseIntl';
+    src: url('../fonts/suisse/SuisseIntl-Bold.otf');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'SuiseIntl';
+    src: url('../fonts/suisse/SuisseIntl-BoldItalic.otf');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'LTWave';
+    src: url('../fonts/LTWave/LTWave-light.ttf');
+}
