@@ -6,7 +6,12 @@ import { Button } from "../button";
 import { Row } from "../row";
 import { Logo } from "../logo";
 
-export function NavbarView({ onClickLogin, themeMode, onChangeMode }) {
+export function NavbarView({
+  onClickLogin,
+  themeMode,
+  onChangeMode,
+  walletUserText,
+}) {
   function getThemeButton() {
     if (themeMode === "dark") {
       return (
@@ -53,7 +58,7 @@ export function NavbarView({ onClickLogin, themeMode, onChangeMode }) {
             </Button>
             <Button color="primary" onClick={onClickLogin}>
               <Icons.Wallet />
-              <span>Connect Wallet</span>
+              <span>{walletUserText}</span>
             </Button>
             {getThemeButton(themeMode)}
           </Toolbar>
