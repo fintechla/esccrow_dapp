@@ -4,14 +4,15 @@ import { Row } from "../row";
 export const Select = styled(Row)`
   border-radius: 6px;
   background-color: var(--purple);
-  margin-top: 24px;
+  margin-top: 34px;
   padding: 10px 15px;
   align-items: center;
   max-width: 110px;
-  min-width: 110px;
+  min-width: 110px;  
   span {
     font-size: 13px;
-    line-height: 1.1em;
+    line-height: 1em;
+    color: var(--dark);
   }
   span:nth-child(2) {
     font-size: 10px;
