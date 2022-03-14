@@ -72,3 +72,17 @@
     #000000 98.73%
   );
 }
+.page-container.theme-dark .select svg.icon ellipse{
+  fill: var(--white);
+  fill-opacity: 1;
+}
+.page-container.theme-dark .select svg.chevron circle {
+  fill: var(--dark-perpetuo)
+}
+.page-container.theme-dark .select svg.chevron path, .page-container.theme-dark .powered-block svg path {
+  fill: var(--white);
+}
+
+.page-container.theme-dark .powered-block span {
+  opacity: 0.7;
+}

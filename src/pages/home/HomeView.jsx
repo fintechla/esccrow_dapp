@@ -70,7 +70,7 @@ export function HomeView() {
               <Button size="lg" color="accent">
                 Begin transaction
               </Button>
-              <PoweredBlock>
+              <PoweredBlock className="powered-block">
                 <span>Powered by</span> <FinchechLabLogo />
               </PoweredBlock>
             </Column>
