@@ -6,3 +6,5 @@
   margin: 0;
   font-family: "SuiseIntl";
 }
+
+input[type=number] { -moz-appearance:textfield; }
