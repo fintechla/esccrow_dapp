@@ -4,8 +4,8 @@ import * as Icons from "../icons";
 
 export function SelectView({ className, options, width, ml }) {
   return (
-    <Select className={className}>
-      <Icons.Near2 />
+    <Select className={"select " + className}>
+      <Icons.Near2 className="icon"/>
       <Column className="text">
         <span>{options[0].name}</span>
         <span>{options[0].type}</span>

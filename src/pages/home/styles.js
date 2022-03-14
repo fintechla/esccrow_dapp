@@ -16,12 +16,6 @@ export const PoweredBlock = styled(Row)`
   span {
     font-size: 12px;
     color: var(--black);
-    margin-top: 2px;
-  }
-  @media (prefers-color-scheme: dark) {
-    svg path {
-      fill: var(--white);
-    }
   }
 `;
 
@@ -29,10 +23,13 @@ export const Reminder = styled(Content)`
   background-color: var(--sky-blue);
   border-radius: 10px;
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 25px;
   margin-top: 25px;
   h3 {
     color: var(--dark);
+  }
+  svg {
+    margin-right: 8px;
   }
   svg path {
     fill: var(--dark);
