@@ -15,7 +15,7 @@ export const MenuItem = styled.li`
   cursor: pointer;
   border-bottom: solid 5px transparent;
   color: var(--dark);
-  ${(props) => (props.active ? "border-color: var(--dark);" : "")}
+  ${(props) => (props.active ? "border-color: var(--dark);font-weight: 500;" : "")}
 `;
 
 export const MenuContainer = styled(Content)`
