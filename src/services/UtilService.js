@@ -12,7 +12,6 @@ export class UtilService {
     localStorage.setItem("themeMode", mode);
     if (this.changeThemeListeners) {
       this.changeThemeListeners.forEach((callback) => {
-        console.log(mode);
         callback(mode);
       });
     }
