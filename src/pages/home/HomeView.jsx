@@ -1,84 +1,42 @@
+import { useState } from "react";
+
 import { Layout } from "../layout";
 import { H1, H3 } from "../../components/text";
-import { SubTitle, PoweredBlock, Reminder, List, Item } from "./styles";
+import { SubTitle, Reminder, List, Item } from "./styles";
 import { TabNavigation } from "../../components/tab-navigation";
 import { TabNavigationItem } from "../../components/tab-navigation-item";
 import { Row } from "../../components/row";
-import { Column } from "../../components/column";
-import { InputText, InputNumber } from "../../components/input";
-import { Button } from "../../components/button";
-import { ReactComponent as FinchechLabLogo } from "../../assets/images/fintechlab-logo.svg";
-import { Select } from "../../components/select";
 import { Bulb } from "../../components/icons";
+import { BuyerFlow } from "../../components/buyerFlow";
+
+let changeTitle = undefined;
 
 export function HomeView() {
+  const [title, setTitle] = useState(
+    "Easiest, safest and most decentralized way to buy and sell NFTs"
+  );
+  const [subTitleVisibility, setSubTitleVisibility] = useState(true);
+  const [reminderVisibility, setReminderVisibility] = useState(true);
+
+  changeTitle = (title) => {
+    setTitle(title);
+    setSubTitleVisibility(false);
+    setReminderVisibility(false);
+  };
+
   return (
     <Layout>
-      <H1 align="center">
-        Easiest, safest and most decentralized way to buy and sell NFTs
-      </H1>
-      <SubTitle align="center">
+      <H1 align="center">{title}</H1>
+      <SubTitle align="center" subTitleVisibility={subTitleVisibility}>
         The best way to send and receive NFT with Escrow Protection
       </SubTitle>
       <TabNavigation>
         <TabNavigationItem order={1} title="Buy">
-          <Column pt="28px" pb="28px">
-            <Row>
-              <InputText
-                width="calc(100% - 160px)"
-                placeholder="Token ID"
-                label="I will buy"
-              />
-            </Row>
-            <Row>
-              <InputText
-                width="calc(100% - 160px)"
-                placeholder="Contract address"
-                label="At"
-                mt="12px"
-              />
-              <Select
-                options={[
-                  {
-                    id: "1",
-                    name: "Near",
-                    type: "Mainnet",
-                    icon: "near-white",
-                  },
-                ]}
-              />
-            </Row>
-            <Row>
-              <InputNumber
-                width="calc(100% - 160px)"
-                placeholder="0.0"
-                label="For"
-                mt="12px"
-              />
-              <Select
-                options={[
-                  {
-                    id: "1",
-                    name: "NEAR",
-                    type: "Near token",
-                    icon: "near-white",
-                  },
-                ]}
-              />
-            </Row>
-            <Column justifyContent="center" mt="30px" alignItems="center">
-              <Button size="lg" color="accent">
-                Begin transaction
-              </Button>
-              <PoweredBlock className="powered-block">
-                <span>Powered by</span> <FinchechLabLogo />
-              </PoweredBlock>
-            </Column>
-          </Column>
+          <BuyerFlow />
         </TabNavigationItem>
         <TabNavigationItem order={2} title="Sell"></TabNavigationItem>
       </TabNavigation>
-      <Reminder>
+      <Reminder reminderVisibility={reminderVisibility}>
         <Row mb="12px" alignItems="baseline">
           <Bulb></Bulb>
           <H3>Reminder!</H3>
@@ -94,3 +52,5 @@ export function HomeView() {
     </Layout>
   );
 }
+
+export { changeTitle };

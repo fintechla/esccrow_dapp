@@ -7,11 +7,14 @@ import {
   MenuContainer,
 } from "./styles";
 
+let hideMenu = undefined;
+
 export function TabNavigationView({ className, children }) {
   const orderItems = [...children].sort(
     (a, b) => a.props.order - b.props.order
   );
 
+  const [menuIsVisible, setMenuIsVisible] = useState(true);
   const [activeItem, setActiveItem] = useState(orderItems[0]);
   const menuItems = getMenuItems(orderItems);
 
@@ -33,12 +36,20 @@ export function TabNavigationView({ className, children }) {
     ));
   }
 
+  hideMenu = () => {
+    setMenuIsVisible(false);
+  };
+
   return (
     <TabNavigationContainer>
-      <MenuContainer>
+      <MenuContainer menuIsVisible={menuIsVisible}>
         <Menu>{menuItems}</Menu>
       </MenuContainer>
-      <TabContent className={className}>{activeItem}</TabContent>
+      <TabContent className={className} setMenuIsVisible={setMenuIsVisible}>
+        {activeItem}
+      </TabContent>
     </TabNavigationContainer>
   );
 }
+
+export { hideMenu };
