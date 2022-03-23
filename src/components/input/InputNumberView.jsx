@@ -8,11 +8,17 @@ export function InputNumberView({
   placeholder,
   mt,
   width,
+  onChange,
 }) {
   return (
     <Column className={className} mt={mt} width={width}>
       <Label>{label}</Label>
-      <Input type="number" placeholder={placeholder} value={value} />
+      <Input
+        type="number"
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+      />
     </Column>
   );
 }

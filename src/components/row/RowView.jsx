@@ -12,6 +12,9 @@ export function RowView({
   ml,
   justifyContent,
 }) {
+  if (gap) {
+    console.log(gap);
+  }
   return (
     <Row
       className={className}

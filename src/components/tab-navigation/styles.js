@@ -15,11 +15,13 @@ export const MenuItem = styled.li`
   cursor: pointer;
   border-bottom: solid 5px transparent;
   color: var(--dark);
-  ${(props) => (props.active ? "border-color: var(--dark);font-weight: 500;" : "")}
+  ${(props) =>
+    props.active ? "border-color: var(--dark);font-weight: 500;" : ""}
 `;
 
 export const MenuContainer = styled(Content)`
   border-bottom: solid 1px var(--dark);
+  ${(props) => (!props.menuIsVisible ? "display: none!important;" : "")}
 `;
 
 export const Menu = styled.ul`

@@ -8,11 +8,12 @@ export function InputTextView({
   placeholder,
   mt,
   width,
+  onChange,
 }) {
   return (
     <Column mt={mt} className={className} width={width}>
       <Label>{label}</Label>
-      <Input placeholder={placeholder} value={value} />
+      <Input placeholder={placeholder} value={value} onChange={onChange} />
     </Column>
   );
 }
