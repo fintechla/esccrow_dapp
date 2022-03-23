@@ -1,5 +1,3 @@
-const CONTRACT_NAME = "esccrow-near.artiko00.testnet";
-
 export const _CONFIG_ = {
   networkId: process.env.REACT_APP_NETWORK_ID,
   nodeUrl: process.env.REACT_APP_NODE_URL,

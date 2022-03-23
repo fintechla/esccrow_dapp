@@ -25,3 +25,18 @@ export const Input = styled.input`
     color: var(--dark);
   }
 `;
+export const CheckboxLabel = styled.label`
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  input {
+    margin-right: 5px;
+    width: auto;
+  }
+  a {
+    color: var(--dark);
+  }
+  ${(props) => (props.mt ? "margin-top: " + props.mt + ";" : "")}
+`;
