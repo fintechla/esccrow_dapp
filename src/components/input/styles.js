@@ -22,7 +22,7 @@ export const Input = styled.input`
   }
 
   &::placeholder {
-    color: var(--dark);
+    color: var(--placeholder);
   }
 `;
 export const CheckboxLabel = styled.label`

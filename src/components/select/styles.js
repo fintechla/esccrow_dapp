@@ -4,11 +4,12 @@ import { Row } from "../row";
 export const Select = styled(Row)`
   border-radius: 6px;
   background-color: var(--purple);
-  margin-top: 34px;
+  max-height: 57px;
+  margin-top: auto;
   padding: 10px 15px;
   align-items: center;
   max-width: 110px;
-  min-width: 110px;  
+  min-width: 110px;
   span {
     font-size: 13px;
     line-height: 1em;
