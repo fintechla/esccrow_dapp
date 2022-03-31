@@ -8,26 +8,47 @@ import { PoweredBlock } from "./styles";
 import { ReactComponent as FinchechLabLogo } from "../../assets/images/fintechlab-logo.svg";
 
 export function StepOne({ onSubmitStepOne, onChangeData, data }) {
-  const { tokenId, contractAddress, amount } = data;
+  const { tokenId, contractAddress, amount, sellerWallet } = data;
+  const blockchain = "near";
+
+  const getTokenIdInput = () => {
+    if (blockchain !== "near") {
+      return (
+        <Row>
+          <InputText
+            width="calc(100% - 160px)"
+            placeholder="Token ID"
+            label="I will buy"
+            value={tokenId}
+            onChange={(e) => onChangeData({ tokenId: e.target.value })}
+          />
+        </Row>
+      );
+    }
+    return "";
+  };
+
   return (
     <Column pt="28px" pb="28px">
+      {getTokenIdInput()}
       <Row>
         <InputText
           width="calc(100% - 160px)"
-          placeholder="Token ID"
+          placeholder="Contract address"
           label="I will buy"
-          value={tokenId}
-          onChange={(e) => onChangeData({ tokenId: e.target.value })}
+          mt="12px"
+          value={contractAddress}
+          onChange={(e) => onChangeData({ contractAddress: e.target.value })}
         />
       </Row>
       <Row>
         <InputText
           width="calc(100% - 160px)"
-          placeholder="Contract address"
-          label="At"
-          mt="12px"
-          value={contractAddress}
-          onChange={(e) => onChangeData({ contractAddress: e.target.value })}
+          placeholder="Wallet address seller"
+          label="Of"
+          mt="20px"
+          value={sellerWallet}
+          onChange={(e) => onChangeData({ sellerWallet: e.target.value })}
         />
         <Select
           options={[

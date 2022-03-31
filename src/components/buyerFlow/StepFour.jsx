@@ -13,18 +13,22 @@ import {
 } from "./styles";
 import { ReactComponent as FinchechLabLogo } from "../../assets/images/fintechlab-logo.svg";
 import { Stepbar } from "../stepbar";
+import { NearService } from "../../services/NearService";
 
 export function StepFour({ onSubmitStepFour, data }) {
-  const { tokenId, contractAddress, amount, maxDatePayment, sellerWallet } =
-    data;
-
+  const { amount } = data;
+  const nearService = new NearService();
   return (
     <Column pt="28px" pb="28px">
       <Stepbar steps={4} progress={3}></Stepbar>
       <WalletBlock>
         <StepRow justifyContent={"space-between"}>
           <H5>Your Near Address</H5>
-          <BtnWallet>Connect wallet</BtnWallet>
+          {nearService.isSigned() ? (
+            <Value>{nearService.wallet.getAccountId()}</Value>
+          ) : (
+            <BtnWallet>Connect wallet</BtnWallet>
+          )}
         </StepRow>
         <StepRow>
           <P>Enter your Near Protocol address here</P>

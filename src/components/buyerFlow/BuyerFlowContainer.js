@@ -2,9 +2,13 @@ import { useState } from "react";
 import { BuyerFlowView } from "./BuyerFlowView";
 import { hideMenu } from "../tab-navigation/TabNavigationView";
 import { changeTitle } from "../../pages/home/HomeView";
+import { showModal, hideModal } from "../Modal/ModalContainer";
+import { TokenSelector } from "../token-selector";
+import { NearService } from "../../services/NearService";
 
 export function BuyerFlowContainer(props) {
   const [activeStep, setStep] = useState(1);
+  const nearService = new NearService();
   const [data, setData] = useState({
     tokenId: "",
     contractAddress: "",
@@ -17,20 +21,35 @@ export function BuyerFlowContainer(props) {
     changeTitle("Begin a transaction");
     setStep(2);
   };
-  const handleSubmitStepTwo = () => {
-    changeTitle("Confirm transaction details");
+  const handleSubmitStepTwo = async () => {
+    changeTitle("Make secure transaction");
     setStep(3);
   };
   const handleSubmitStepThree = () => {
-    changeTitle("Approve payment");
+    changeTitle("Confirm transaction");
     setStep(4);
   };
-  const handleSubmitStepFour = () => {
+  const handleSubmitStepFour = async () => {
     changeTitle("Approve payment");
-    setStep(5);
+    const result = await nearService.createTransaction(data);
+    console.log("T RESULT", result);
+    // setStep(5);
   };
   const handleChangeData = (patch) => {
     setData({ ...data, ...patch });
+  };
+  const handleClickSelectTokenBtn = async () => {
+    const content = (
+      <TokenSelector
+        contractAddress={data.contractAddress}
+        sellerWallet={data.sellerWallet}
+        onSubmitTokenSelector={(tokenId) => {
+          handleChangeData({ tokenId });
+          hideModal();
+        }}
+      />
+    );
+    showModal(content);
   };
   const startBuyerFlow = () => {
     console.log(data);
@@ -44,6 +63,7 @@ export function BuyerFlowContainer(props) {
       onSubmitStepTwo={handleSubmitStepTwo}
       onSubmitStepThree={handleSubmitStepThree}
       onSubmitStepFour={handleSubmitStepFour}
+      onClickSelectTokenBtn={handleClickSelectTokenBtn}
       startBuyerFlow={startBuyerFlow}
     />
   );

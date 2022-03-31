@@ -33,11 +33,12 @@ export const OneColumn = styled(Row)`
       color: var(--dark);
     }
   }
+  margin-top: 20px;
 `;
 
 export const TwoColumns = styled(Row)`
   gap: 30px;
-  margin-bottom: 20px;
+  margin-top: 20px;
   > div {
     width: 50%;
     background-color: var(--purple);
@@ -178,6 +179,7 @@ export const SocialBlock = styled.div`
   display: flex;
   justify-content: center;
 `;
+
 export const SocialButton = styled.button`
   display: flex;
   flex-direction: column;
@@ -188,4 +190,17 @@ export const SocialButton = styled.button`
     font-size: 10px;
     margin-top: 5px;
   }
+`;
+
+export const TokenIdBtn = styled.button`
+  background-color: var(--purple);
+  height: 47px;
+  margin-top: auto;
+  border: 0;
+  border-radius: 6px;
+  width: 140px;
+  color: var(--dark);
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
 `;

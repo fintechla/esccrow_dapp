@@ -1,15 +1,19 @@
 import { Column } from "../column";
 import { Row } from "../row";
-import { TwoColumns, OneColumn } from "./styles";
-import { InputText, InputCheckbox } from "../input";
-import { Select } from "../select";
+import { TwoColumns, OneColumn, TokenIdBtn } from "./styles";
+import { InputText, InputDate, InputCheckbox } from "../input";
 import { Button } from "../button";
 import { PoweredBlock } from "./styles";
 import { ReactComponent as FinchechLabLogo } from "../../assets/images/fintechlab-logo.svg";
 import { Link } from "react-router-dom";
 import { Stepbar } from "../stepbar";
 
-export function StepTwo({ onSubmitStepTwo, onChangeData, data }) {
+export function StepTwo({
+  onSubmitStepTwo,
+  onChangeData,
+  onClickSelectTokenBtn,
+  data,
+}) {
   const { tokenId, contractAddress, amount, maxDatePayment, sellerWallet } =
     data;
 
@@ -24,42 +28,33 @@ export function StepTwo({ onSubmitStepTwo, onChangeData, data }) {
       <Stepbar steps={4} progress={1}></Stepbar>
       <TwoColumns>
         <Column>
-          <label>Token ID</label>
-          <p>{tokenId}</p>
+          <label>Wallet seller:</label>
+          <p>{sellerWallet}</p>
         </Column>
         <Column>
-          <label>Price</label>
+          <label>Price:</label>
           <p>{amount}</p>
         </Column>
       </TwoColumns>
       <OneColumn>
         <Column>
-          <label>Contract address</label>
+          <label>Contract address NFT:</label>
           <p>{contractAddress}</p>
         </Column>
       </OneColumn>
       <Row>
         <InputText
           width="calc(100% - 160px)"
-          placeholder=""
-          label="Wallet seller"
+          placeholder="Select token ID"
+          label="Token ID"
           mt="20px"
-          value={sellerWallet}
-          onChange={(e) => onChangeData({ sellerWallet: e.target.value })}
+          value={tokenId}
+          onChange={(e) => onChangeData({ tokenId: e.target.value })}
         />
-        <Select
-          options={[
-            {
-              id: "1",
-              name: "Near",
-              type: "Mainnet",
-              icon: "near-white",
-            },
-          ]}
-        />
+        <TokenIdBtn onClick={onClickSelectTokenBtn}>Select NFT</TokenIdBtn>
       </Row>
       <Row>
-        <InputText
+        <InputDate
           mt="20px"
           width="calc(100% - 160px)"
           placeholder=""
