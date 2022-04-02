@@ -1,4 +1,10 @@
-import { connect, keyStores, WalletConnection, Contract } from "near-api-js";
+import {
+  connect,
+  keyStores,
+  WalletConnection,
+  Contract,
+  providers,
+} from "near-api-js";
 import { parseNearAmount } from "near-api-js/lib/utils/format";
 import * as buffer from "buffer";
 import { _CONFIG_ } from "../config";
@@ -32,7 +38,7 @@ export class NearService {
 
   async signIn() {
     this.wallet.requestSignIn(
-      "example-contract.testnet", // contract requesting access
+      _CONFIG_.esccrowContractId, // contract requesting access
       "Esccrow", // optional
       _CONFIG_.url, // optional
       _CONFIG_.url // optional
@@ -50,12 +56,19 @@ export class NearService {
     });
   }
 
+  async getTransactionResult(transactionHashes) {
+    const result = await this.near.connection.provider.txStatus(
+      transactionHashes,
+      this.wallet.getAccountId()
+    );
+    return JSON.parse(atob(result.status.SuccessValue));
+  }
+
   async createTransaction({ sellerWallet, amount, tokenId, contractAddress }) {
     const contract = new Contract(
       this.wallet.account(),
       _CONFIG_.esccrowContractId,
       {
-        viewMethods: ["get_transaction_fee_parameter"],
         changeMethods: ["create_transaction"],
         sender: this.wallet.account(),
       }
@@ -69,13 +82,7 @@ export class NearService {
       nft_contract_id: contractAddress,
     };
 
-    console.log(params);
-    // return contract.get_transaction_fee_parameter();
-    return contract.create_transaction(
-      params,
-      undefined,
-      parseNearAmount("0.1")
-    );
+    contract.create_transaction(params, undefined, parseNearAmount("0.1"));
   }
 
   isSigned() {
