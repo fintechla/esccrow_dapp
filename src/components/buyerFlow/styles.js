@@ -186,6 +186,7 @@ export const SocialButton = styled.button`
   align-items: center;
   border: 0;
   background-color: transparent;
+  cursor: pointer;
   label {
     font-size: 10px;
     margin-top: 5px;
