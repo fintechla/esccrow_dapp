@@ -49,7 +49,7 @@ export function StepFour({ onSubmitStepFour, data }) {
         </StepRow>
         <StepRow justifyContent={"space-between"}>
           <H5>Total</H5>
-          <H5>{amount + 0.25}</H5>
+          <H5>{Number(amount) + 0.25}</H5>
         </StepRow>
       </PriceBlock>
       <Column justifyContent="center" mt="30px" alignItems="center">

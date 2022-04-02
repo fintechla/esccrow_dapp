@@ -68,7 +68,7 @@ export function StepTwo({
       </Row>
       <Column justifyContent="center" mt="30px" alignItems="center">
         <Button size="lg" color="accent" onClick={onSubmitStepTwo}>
-          Begin new transfer
+          Make secure payment
         </Button>
         <PoweredBlock className="powered-block">
           <span>Powered by</span> <FinchechLabLogo />
