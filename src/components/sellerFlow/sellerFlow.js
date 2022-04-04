@@ -55,11 +55,17 @@ export function SellerFlow() {
     nearService.lockToken(transaction);
   };
 
+  const handleClickCollect = () => {
+    nearService.collectTransaction(transaction.transaction_id);
+  };
+
   const getStatusElm = () => {
     if (transaction.transaction_status === "TokensLocked") {
       return <button onClick={handleClickSendToken}>send token</button>;
     } else if (transaction.transaction_status === "change_to_nft_locked") {
       return <button onClick={handleClickLockToken}>Lock NFT</button>;
+    } else if (transaction.transaction_status === "TokensAndNFTLocked") {
+      return <button onClick={handleClickCollect}>Collect</button>;
     } else return transaction.transaction_status;
   };
 
