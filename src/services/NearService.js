@@ -119,6 +119,20 @@ export class NearService {
     contract.pay_transaction(params, undefined, undefined);
   }
 
+  async collectNFT({ transaction_id }) {
+    const contract = new Contract(
+      this.wallet.account(),
+      _CONFIG_.esccrowContractId,
+      {
+        changeMethods: ["transfer_nft"],
+        sender: this.wallet.account(),
+      }
+    );
+
+    const params = { transaction_id };
+    contract.transfer_nft(params, undefined, undefined);
+  }
+
   async createTransaction({ sellerWallet, amount, tokenId, contractAddress }) {
     const contract = new Contract(
       this.wallet.account(),
