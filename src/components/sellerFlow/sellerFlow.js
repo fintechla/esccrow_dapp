@@ -14,6 +14,29 @@ export function SellerFlow() {
   const nearService = new NearService();
   const query = useQuery();
 
+  const onStart = async () => {
+    if (!query.has("transactionId")) return;
+    getTransaction();
+  };
+
+  const checkIfTokenBelongsToEsccrow = async () => {
+    if (
+      !query.has("transactionId") ||
+      !query.has("transactionHashes") ||
+      !transaction ||
+      !(await nearService.belonsToEsccrow(
+        transaction.nft_contract_id,
+        transaction.nft_id
+      ))
+    )
+      return;
+
+    setTransaction({
+      ...transaction,
+      transaction_status: "change_to_nft_locked",
+    });
+  };
+
   const getTransaction = async () => {
     const transactionId = query.get("transactionId");
 
@@ -26,10 +49,22 @@ export function SellerFlow() {
     nearService.sendToken(transaction);
   };
 
+  const handleClickLockToken = () => {
+    nearService.lockToken(transaction);
+  };
+
+  const getStatusElm = () => {
+    if (transaction.transaction_status === "TokensLocked") {
+      return <button onClick={handleClickSendToken}>send token</button>;
+    } else if (transaction.transaction_status === "change_to_nft_locked") {
+      return <button onClick={handleClickLockToken}>Lock NFT</button>;
+    } else return transaction.transaction_status;
+  };
+
   const getTransactionRow = () => {
     if (!transaction) return "";
 
-    const { transaction_id, nft_id, price, transaction_status } = transaction;
+    const { transaction_id, nft_id, price } = transaction;
     const parsePrice = formatNearAmount(
       price.toLocaleString("es-PE").replace(/,/g, ""),
       4
@@ -42,20 +77,18 @@ export function SellerFlow() {
         <td>Seller</td>
         <td>{parsePrice}</td>
         <td>Near</td>
-        <td>
-          {transaction_status === "TokensLocked" ? (
-            <button onClick={handleClickSendToken}>send token</button>
-          ) : (
-            transaction_status
-          )}
-        </td>
+        <td>{getStatusElm()}</td>
       </tr>
     );
   };
 
   useEffect(() => {
-    getTransaction();
+    onStart();
   }, []);
+
+  useEffect(() => {
+    checkIfTokenBelongsToEsccrow();
+  }, [transaction]);
 
   return (
     <div>
