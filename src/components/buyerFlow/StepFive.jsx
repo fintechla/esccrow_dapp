@@ -14,6 +14,7 @@ import {
 import { ReactComponent as FinchechLabLogo } from "../../assets/images/fintechlab-logo.svg";
 import { Stepbar } from "../stepbar";
 import { _CONFIG_ } from "../../config";
+import { NearService } from "../../services/NearService";
 
 export function StepFive({ data }) {
   const { transactionId } = data;
@@ -55,6 +56,18 @@ export function StepFive({ data }) {
           }}
         >
           Share
+        </Button>
+        <br />
+        <Button
+          size="lg"
+          color="info"
+          onClick={() => {
+            console.log("get NFT");
+            const nearService = new NearService();
+            nearService.collectNFT({ transaction_id: transactionId });
+          }}
+        >
+          Get NFT
         </Button>
         <PoweredBlock className="powered-block">
           <span>Powered by</span> <FinchechLabLogo />
