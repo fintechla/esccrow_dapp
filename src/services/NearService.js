@@ -61,7 +61,7 @@ export class NearService {
       token_id: nft_id,
     };
 
-    contract.nft_transfer(params);
+    contract.nft_transfer(params, undefined, 1);
   }
 
   async getTransactionResult(transactionHashes) {
