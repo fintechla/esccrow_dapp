@@ -9,11 +9,17 @@ export function InputTextView({
   mt,
   width,
   onChange,
+  disabled,
 }) {
   return (
     <Column mt={mt} className={className} width={width}>
       <Label>{label}</Label>
-      <Input placeholder={placeholder} value={value} onChange={onChange} />
+      <Input
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        disabled={disabled ? true : false}
+      />
     </Column>
   );
 }
