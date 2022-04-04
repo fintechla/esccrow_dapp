@@ -24,6 +24,7 @@ export function SellerFlow() {
       !query.has("transactionId") ||
       !query.has("transactionHashes") ||
       !transaction ||
+      transaction.transaction_status === "change_to_nft_locked" ||
       !(await nearService.belonsToEsccrow(
         transaction.nft_contract_id,
         transaction.nft_id
