@@ -39,6 +39,17 @@ export class NearService {
     );
   }
 
+  async belonsToEsccrow(contract_id, nft_id) {
+    const contract = new Contract(this.wallet.account(), contract_id, {
+      viewMethods: ["nft_token"],
+      sender: this.wallet.account(),
+    });
+
+    return contract.nft_token({
+      token_id: nft_id,
+    });
+  }
+
   async getNFTByContract(contract_id, owner_account_id) {
     const contract = new Contract(this.wallet.account(), contract_id, {
       viewMethods: ["nft_tokens_for_owner"],
@@ -64,12 +75,34 @@ export class NearService {
     contract.nft_transfer(params, undefined, "1");
   }
 
+  async getTransferTokenResult(transactionHashes) {
+    const result = await this.near.connection.provider.txStatus(
+      transactionHashes,
+      this.wallet.getAccountId()
+    );
+    return result;
+  }
+
   async getTransactionResult(transactionHashes) {
     const result = await this.near.connection.provider.txStatus(
       transactionHashes,
       this.wallet.getAccountId()
     );
     return JSON.parse(atob(result.status.SuccessValue));
+  }
+
+  async lockToken({ transaction_id, nft_contract_id, nft_id }) {
+    const contract = new Contract(
+      this.wallet.account(),
+      _CONFIG_.esccrowContractId,
+      {
+        changeMethods: ["is_nft_locked"],
+        sender: this.wallet.account(),
+      }
+    );
+
+    const params = { transaction_id, nft_contract_id, token_id: nft_id };
+    contract.is_nft_locked(params, undefined, undefined);
   }
 
   async createTransaction({ sellerWallet, amount, tokenId, contractAddress }) {
