@@ -56,7 +56,7 @@ export function SellerFlow() {
   };
 
   const handleClickCollect = () => {
-    nearService.collectTransaction(transaction.transaction_id);
+    nearService.collectTransaction(transaction);
   };
 
   const getStatusElm = () => {
