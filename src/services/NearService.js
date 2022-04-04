@@ -105,6 +105,20 @@ export class NearService {
     contract.is_nft_locked(params, undefined, undefined);
   }
 
+  async collectTransaction({ transaction_id }) {
+    const contract = new Contract(
+      this.wallet.account(),
+      _CONFIG_.esccrowContractId,
+      {
+        changeMethods: ["pay_transaction"],
+        sender: this.wallet.account(),
+      }
+    );
+
+    const params = { transaction_id };
+    contract.pay_transaction(params, undefined, undefined);
+  }
+
   async createTransaction({ sellerWallet, amount, tokenId, contractAddress }) {
     const contract = new Contract(
       this.wallet.account(),
