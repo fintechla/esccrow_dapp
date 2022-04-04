@@ -1,10 +1,4 @@
-import {
-  connect,
-  keyStores,
-  WalletConnection,
-  Contract,
-  providers,
-} from "near-api-js";
+import { connect, keyStores, WalletConnection, Contract } from "near-api-js";
 import { parseNearAmount } from "near-api-js/lib/utils/format";
 import * as buffer from "buffer";
 import { _CONFIG_ } from "../config";
@@ -56,6 +50,20 @@ export class NearService {
     });
   }
 
+  async sendToken({ nft_id, nft_contract_id }) {
+    const contract = new Contract(this.wallet.account(), nft_contract_id, {
+      changeMethods: ["nft_transfer"],
+      sender: this.wallet.account(),
+    });
+
+    const params = {
+      receiver_id: _CONFIG_.esccrowContractId,
+      token_id: nft_id,
+    };
+
+    contract.nft_transfer(params);
+  }
+
   async getTransactionResult(transactionHashes) {
     const result = await this.near.connection.provider.txStatus(
       transactionHashes,
@@ -82,10 +90,50 @@ export class NearService {
       nft_contract_id: contractAddress,
     };
 
-    contract.create_transaction(params, undefined, parseNearAmount("0.1"));
+    const deposit = String(amount * 1 + 0.1);
+    contract.create_transaction(params, undefined, parseNearAmount(deposit));
   }
 
   isSigned() {
     return this.wallet.isSignedIn();
+  }
+
+  async isAnAccount(account_id) {
+    try {
+      await this.near.connection.provider.query({
+        request_type: "view_account",
+        finality: "final",
+        account_id,
+      });
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  async isAContract(contract_id) {
+    try {
+      await this.near.connection.provider.query({
+        request_type: "view_code",
+        finality: "final",
+        account_id: contract_id,
+      });
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+
+  async getTransactionById(transactionId) {
+    const contract = new Contract(
+      this.wallet.account(),
+      _CONFIG_.esccrowContractId,
+      {
+        viewMethods: ["get_transaction_by_id"],
+        sender: this.wallet.account(),
+      }
+    );
+    const params = { transaction_id: Number(transactionId) };
+    return contract.get_transaction_by_id(params);
   }
 }

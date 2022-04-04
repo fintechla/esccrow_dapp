@@ -49,6 +49,7 @@ export function StepTwo({
           label="Token ID"
           mt="20px"
           value={tokenId}
+          disabled={true}
           onChange={(e) => onChangeData({ tokenId: e.target.value })}
         />
         <TokenIdBtn onClick={onClickSelectTokenBtn}>Select NFT</TokenIdBtn>

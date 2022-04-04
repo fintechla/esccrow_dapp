@@ -8,6 +8,7 @@ import { TabNavigationItem } from "../../components/tab-navigation-item";
 import { Row } from "../../components/row";
 import { Bulb } from "../../components/icons";
 import { BuyerFlow } from "../../components/buyerFlow";
+import { SellerFlow } from "../../components/sellerFlow";
 
 let changeTitle = undefined;
 
@@ -34,7 +35,9 @@ export function HomeView() {
         <TabNavigationItem order={1} title="Buy">
           <BuyerFlow />
         </TabNavigationItem>
-        <TabNavigationItem order={2} title="Sell"></TabNavigationItem>
+        <TabNavigationItem order={2} title="Sell">
+          <SellerFlow />
+        </TabNavigationItem>
       </TabNavigation>
       <Reminder reminderVisibility={reminderVisibility}>
         <Row mb="12px" alignItems="baseline">

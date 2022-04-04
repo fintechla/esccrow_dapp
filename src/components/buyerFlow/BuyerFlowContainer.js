@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { BuyerFlowView } from "./BuyerFlowView";
 import { hideMenu } from "../tab-navigation/TabNavigationView";
 import { changeTitle } from "../../pages/home/HomeView";
@@ -6,6 +6,7 @@ import { showModal, hideModal } from "../Modal/ModalContainer";
 import { TokenSelector } from "../token-selector";
 import { NearService } from "../../services/NearService";
 import { useLocation } from "react-router-dom";
+import { validate } from "./validate";
 
 function useQuery() {
   const { search } = useLocation();
@@ -23,24 +24,24 @@ export function BuyerFlowContainer(props) {
     sellerWallet: "",
     maxDatePayment: "",
   });
-  const nearService = new NearService();
   const query = useQuery();
+  const nearService = new NearService();
 
   const validateTransactionStatus = async () => {
     const transactionHashes = query.get("transactionHashes");
 
     if (!transactionHashes) return;
 
-    const result = await nearService.getTransactionResult(
-      query.get("transactionHashes")
-    );
+    const result = await nearService.getTransactionResult(transactionHashes);
 
     setData({ ...data, transactionId: result.transaction_id });
     changeTitle("Begin a transaction");
     setStep(5);
   };
 
-  const handleSubmitStepOne = () => {
+  const handleSubmitStepOne = async () => {
+    if (!(await validate(data))) return;
+
     hideMenu(true);
     changeTitle("Begin a transaction");
     setStep(2);
