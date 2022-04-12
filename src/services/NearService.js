@@ -1,5 +1,8 @@
 import { connect, keyStores, WalletConnection, Contract } from "near-api-js";
-import { parseNearAmount } from "near-api-js/lib/utils/format";
+import {
+  parseNearAmount,
+  formatNearAmount,
+} from "near-api-js/lib/utils/format";
 import * as buffer from "buffer";
 import { _CONFIG_ } from "../config";
 
@@ -61,18 +64,19 @@ export class NearService {
     });
   }
 
-  async sendToken({ nft_id, nft_contract_id }) {
+  async sendToken({ nft_id, nft_contract_id, transaction_id }) {
     const contract = new Contract(this.wallet.account(), nft_contract_id, {
-      changeMethods: ["nft_transfer"],
+      changeMethods: ["nft_transfer_call"],
       sender: this.wallet.account(),
     });
 
     const params = {
       receiver_id: _CONFIG_.esccrowContractId,
       token_id: nft_id,
+      msg: String(transaction_id),
     };
 
-    contract.nft_transfer(params, undefined, "1");
+    contract.nft_transfer_call(params, undefined, "1");
   }
 
   async getTransferTokenResult(transactionHashes) {
@@ -196,5 +200,31 @@ export class NearService {
     );
     const params = { transaction_id: Number(transactionId) };
     return contract.get_transaction_by_id(params);
+  }
+
+  parseYoctoToNears(yocto) {
+    const numberStr = Number(yocto).toLocaleString("fullwide", {
+      useGrouping: false,
+    });
+    return formatNearAmount(numberStr, 2);
+  }
+
+  getTransactionsByAccount(fromIndex, limit) {
+    const contract = new Contract(
+      this.wallet.account(),
+      _CONFIG_.esccrowContractId,
+      {
+        viewMethods: ["get_transactions_by_account"],
+        sender: this.wallet.account(),
+      }
+    );
+
+    const params = {
+      account_id: this.wallet.getAccountId(),
+      from_index: String(fromIndex),
+      limit,
+    };
+
+    return contract.get_transactions_by_account(params);
   }
 }
