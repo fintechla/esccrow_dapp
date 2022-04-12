@@ -6,9 +6,10 @@ import { Container } from "../../components/container";
 import { Main } from "./styles";
 import { UtilService } from "../../services/UtilService";
 
-export function LayoutView({ children }) {
+export function LayoutView({ children, container }) {
   const utilService = new UtilService();
   const [themeMode, setThemeMode] = useState(utilService.getThemeMode());
+  const size = container === "full" ? undefined : "md";
 
   useEffect(() => {
     utilService.listenChangeThemeMode((mode) => {
@@ -22,7 +23,7 @@ export function LayoutView({ children }) {
         <Navbar></Navbar>
       </Header>
       <Main>
-        <Container size="md">{children}</Container>
+        <Container size={size}>{children}</Container>
       </Main>
       <Footer></Footer>
     </div>

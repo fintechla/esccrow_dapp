@@ -63,7 +63,7 @@ export function SellerFlow() {
     if (transaction.transaction_status === "TokensLocked") {
       return <button onClick={handleClickSendToken}>send token</button>;
     } else if (transaction.transaction_status === "change_to_nft_locked") {
-      return <button onClick={handleClickLockToken}>Lock NFT</button>;
+      return <button onClick={handleClickLockToken}>Check NFT</button>;
     } else if (transaction.transaction_status === "TokensAndNFTLocked") {
       return <button onClick={handleClickCollect}>Collect</button>;
     } else return transaction.transaction_status;
@@ -99,7 +99,7 @@ export function SellerFlow() {
   }, [transaction]);
 
   return (
-    <div>
+    <>
       <table>
         <thead>
           <tr>
@@ -113,6 +113,6 @@ export function SellerFlow() {
         </thead>
         <tbody>{getTransactionRow()}</tbody>
       </table>
-    </div>
+    </>
   );
 }
