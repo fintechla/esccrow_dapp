@@ -33,6 +33,10 @@ export const Data = styled(DataComponent)`
   }
 `;
 
+export const Table2 = styled(Table)`
+  margin-top: 30px;
+`;
+
 export const Table1 = styled(Table)`
   margin-top: 50px;
   th,
@@ -50,3 +54,23 @@ export const Table1 = styled(Table)`
     font-weight: 400;
   }
 `;
+
+export const Card = styled.div`
+  margin-top: 50px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.28);
+  border-radius: 10px;
+  padding: 0 32px;
+`;
+
+export const CardHeader = styled.div`
+  border-bottom: 1px solid rgba(131, 131, 131, 0.7);
+  padding: 25px 12px 17px;
+`;
+
+export const CardTitle = styled.h4`
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--dark);
+`;
+
+export const CardBody = styled.div``;

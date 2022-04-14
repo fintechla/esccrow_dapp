@@ -44,6 +44,7 @@ export function SellerFlow() {
 
     if (!transactionId) return;
     const result = await nearService.getTransactionById(transactionId);
+    console.log(result);
     setTransaction(result);
   };
 

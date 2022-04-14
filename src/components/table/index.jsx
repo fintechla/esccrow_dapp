@@ -1,20 +1,30 @@
 export function TableRow({ className, data }) {
   const getFields = () => {
-    return data.map((itm, idx) => <td key={"td-" + idx}>{itm}</td>);
+    return data.map((itm, idx) => {
+      let value = itm;
+      if (typeof itm === "object") {
+        value = itm.content;
+      }
+      return <td key={"td-" + idx}>{value}</td>;
+    });
   };
   return <tr className={className}>{getFields()}</tr>;
 }
 
 export function Table({ className, headers, children }) {
   const getHeader = () => {
-    return headers.map((itm, idx) => <th key={"th" + idx}>{itm}</th>);
+    if (!headers) return;
+    const row = headers.map((itm, idx) => <th key={"th" + idx}>{itm}</th>);
+    return (
+      <thead>
+        <tr>{row}</tr>
+      </thead>
+    );
   };
 
   return (
     <table className={className}>
-      <thead>
-        <tr>{getHeader()}</tr>
-      </thead>
+      {getHeader()}
       <tbody>{children}</tbody>
     </table>
   );

@@ -1,13 +1,24 @@
 import { useState, useEffect } from "react";
 import { Layout } from "../layout";
-import { Title, Header, TimeBlock, Data } from "./styles";
+import {
+  Title,
+  Header,
+  TimeBlock,
+  Data,
+  Card,
+  CardHeader,
+  CardTitle,
+  CardBody,
+  Table1,
+  Table2,
+} from "./styles";
 import { NearService } from "../../services/NearService";
 import { useParams } from "react-router-dom";
 import { TableRow } from "../../components/table";
-import { Table1 } from "./styles";
 
 export function Transaction(props) {
   const [transaction, setTransaction] = useState({});
+  const [NFT, setNFT] = useState();
   const { transactionId } = useParams();
   const nearService = new NearService();
 
@@ -21,7 +32,21 @@ export function Transaction(props) {
     setTransaction(result);
   };
 
+  const getNFT = async () => {
+    const { nft_id, nft_contract_id } = transaction;
+    const result = await nearService.getNFTById(nft_contract_id, nft_id);
+    console.log("NFT", result);
+    setNFT(result);
+  };
+
+  const getNFTImage = () => {
+    if (!NFT) return;
+    const imgURL = `https://ipfs.fleek.co/ipfs/${NFT.metadata.media}`;
+    return <img src={imgURL} alt={NFT.metadata.title} width="501px" />;
+  };
+
   useEffect(init, []);
+  useEffect(getNFT, [transaction]);
 
   return (
     <Layout container={"full"}>
@@ -43,6 +68,28 @@ export function Transaction(props) {
           ]}
         />
       </Table1>
+      <Card>
+        <CardHeader>
+          <CardTitle>Confirmation of Payment</CardTitle>
+        </CardHeader>
+        <CardBody>
+          <Table2>
+            <TableRow
+              data={[
+                "Esccrow.finance",
+                "Wallet seller",
+                { content: getNFTImage() },
+              ]}
+            />
+            <TableRow data={["dasdas.near"]} />
+            <TableRow data={["Digital asset info", "Token ID"]} />
+            <TableRow data={["Contract address"]} />
+            <TableRow data={["x-scroww.near"]} />
+            <TableRow data={["Image Link"]} />
+            <TableRow data={["https://asdasdas"]} />
+          </Table2>
+        </CardBody>
+      </Card>
     </Layout>
   );
 }
