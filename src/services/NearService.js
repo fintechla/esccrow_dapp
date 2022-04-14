@@ -64,6 +64,17 @@ export class NearService {
     });
   }
 
+  async getNFTById(nft_contract_id, nft_id) {
+    const contract = new Contract(this.wallet.account(), nft_contract_id, {
+      viewMethods: ["nft_token"],
+      sender: this.wallet.account(),
+    });
+
+    const params = { token_id: nft_id };
+
+    return contract.nft_token(params);
+  }
+
   async sendToken({ nft_id, nft_contract_id, transaction_id }) {
     const contract = new Contract(this.wallet.account(), nft_contract_id, {
       changeMethods: ["nft_transfer_call"],
@@ -76,7 +87,7 @@ export class NearService {
       msg: String(transaction_id),
     };
 
-    contract.nft_transfer_call(params, "1200000000000000", "1");
+    contract.nft_transfer_call(params, "200000000000000", "1");
   }
 
   async getTransferTokenResult(transactionHashes) {
