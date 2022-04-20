@@ -27,7 +27,15 @@ export function StepFour({ onSubmitStepFour, data }) {
           {nearService.isSigned() ? (
             <Value>{nearService.wallet.getAccountId()}</Value>
           ) : (
-            <BtnWallet>Connect wallet</BtnWallet>
+            <BtnWallet
+              onClick={() => {
+                if (!nearService.isSigned()) {
+                  nearService.signIn();
+                }
+              }}
+            >
+              Connect wallet
+            </BtnWallet>
           )}
         </StepRow>
         <StepRow>

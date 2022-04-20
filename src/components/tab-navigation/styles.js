@@ -29,4 +29,6 @@ export const Menu = styled.ul`
   list-style: none;
 `;
 
-export const TabContent = styled.div``;
+export const TabContent = styled.div`
+  position: relative;
+`;

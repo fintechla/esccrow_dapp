@@ -33,6 +33,30 @@ export const Data = styled(DataComponent)`
   }
 `;
 
+export const Table2 = styled(Table)`
+  margin-top: 30px;
+  width: 100%;
+  td {
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--dark);
+    font-style: normal;
+  }
+  td b {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--dark);
+  }
+  td span {
+    display: block;
+    padding-bottom: 40px;
+    max-width: 263px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+`;
+
 export const Table1 = styled(Table)`
   margin-top: 50px;
   th,
@@ -49,4 +73,45 @@ export const Table1 = styled(Table)`
     font-size: 26px;
     font-weight: 400;
   }
+`;
+
+export const Card = styled.div`
+  margin-top: 50px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.28);
+  border-radius: 10px;
+  padding: 0 32px;
+`;
+
+export const CardHeader = styled.div`
+  border-bottom: 1px solid rgba(131, 131, 131, 0.7);
+  padding: 25px 12px 17px;
+`;
+
+export const CardTitle = styled.h4`
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--dark);
+`;
+
+export const CardBody = styled.div`
+  padding-bottom: 60px;
+`;
+
+export const MaxTime = styled.p`
+  color: var(--dark);
+  font-size: 24px;
+  font-weight: 400;
+`;
+
+export const Confirm = styled.p`
+  color: var(--dark);
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 18px;
+`;
+
+export const ButtonBlock = styled.div`
+  display: flex;
+  gap: 50px;
+  margin-top: 25px;
 `;

@@ -1,18 +1,20 @@
 import { Column } from "../column";
 import { Row } from "../row";
-import { TwoColumns, OneColumn, TokenIdBtn } from "./styles";
+import { TwoColumns, OneColumn, TokenIdBtn, CloseButton } from "./styles";
 import { InputText, InputDate, InputCheckbox } from "../input";
 import { Button } from "../button";
 import { PoweredBlock } from "./styles";
 import { ReactComponent as FinchechLabLogo } from "../../assets/images/fintechlab-logo.svg";
 import { Link } from "react-router-dom";
 import { Stepbar } from "../stepbar";
+import { ReactComponent as CloseSvg } from "../../assets/icons/close.svg";
 
 export function StepTwo({
   onSubmitStepTwo,
   onChangeData,
   onClickSelectTokenBtn,
   data,
+  reset,
 }) {
   const { tokenId, contractAddress, amount, maxDatePayment, sellerWallet } =
     data;
@@ -25,6 +27,13 @@ export function StepTwo({
 
   return (
     <Column pt="28px" pb="28px">
+      <CloseButton
+        onClick={() => {
+          reset();
+        }}
+      >
+        <CloseSvg />
+      </CloseButton>
       <Stepbar steps={4} progress={1}></Stepbar>
       <TwoColumns>
         <Column>

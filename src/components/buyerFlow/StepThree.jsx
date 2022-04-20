@@ -1,16 +1,24 @@
 import { Column } from "../column";
 import { Button } from "../button";
-import { PoweredBlock } from "./styles";
+import { PoweredBlock, CloseButton } from "./styles";
 import { ReactComponent as FinchechLabLogo } from "../../assets/images/fintechlab-logo.svg";
 import { Stepbar } from "../stepbar";
 import { Tbl, Th, Tr, Td } from "./styles";
+import { ReactComponent as CloseSvg } from "../../assets/icons/close.svg";
 
-export function StepThree({ onSubmitStepThree, data }) {
+export function StepThree({ onSubmitStepThree, data, reset }) {
   const { tokenId, contractAddress, amount, maxDatePayment, sellerWallet } =
     data;
 
   return (
     <Column pt="28px" pb="28px">
+      <CloseButton
+        onClick={() => {
+          reset();
+        }}
+      >
+        <CloseSvg />
+      </CloseButton>
       <Stepbar steps={4} progress={2}></Stepbar>
       <Tbl>
         <tbody>

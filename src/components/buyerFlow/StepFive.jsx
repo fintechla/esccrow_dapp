@@ -15,10 +15,12 @@ import { ReactComponent as FinchechLabLogo } from "../../assets/images/fintechla
 import { Stepbar } from "../stepbar";
 import { _CONFIG_ } from "../../config";
 import { NearService } from "../../services/NearService";
+import { useNavigate } from "react-router-dom";
 
 export function StepFive({ data }) {
   const { transactionId } = data;
-  const url = _CONFIG_.url + `?transactionId=${transactionId}`;
+  const navigate = useNavigate();
+  const url = _CONFIG_.url + `/transactions`;
   return (
     <Column pt="28px" pb="28px">
       <Stepbar steps={4} progress={4}></Stepbar>
@@ -47,27 +49,10 @@ export function StepFive({ data }) {
           size="lg"
           color="accent"
           onClick={() => {
-            const shareData = {
-              title: "MDN",
-              text: "Learn web development on MDN!",
-              url,
-            };
-            navigator.share(shareData);
+            navigate("/transactions");
           }}
         >
-          Share
-        </Button>
-        <br />
-        <Button
-          size="lg"
-          color="info"
-          onClick={() => {
-            console.log("get NFT");
-            const nearService = new NearService();
-            nearService.collectNFT({ transaction_id: transactionId });
-          }}
-        >
-          Get NFT
+          Go to dashboard
         </Button>
         <PoweredBlock className="powered-block">
           <span>Powered by</span> <FinchechLabLogo />

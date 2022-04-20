@@ -11,6 +11,7 @@ import { BuyerFlow } from "../../components/buyerFlow";
 import { SellerFlow } from "../../components/sellerFlow";
 
 let changeTitle = undefined;
+let showSubTitle = undefined;
 
 export function HomeView() {
   const [title, setTitle] = useState(
@@ -23,6 +24,11 @@ export function HomeView() {
     setTitle(title);
     setSubTitleVisibility(false);
     setReminderVisibility(false);
+  };
+
+  showSubTitle = () => {
+    setSubTitleVisibility(true);
+    setReminderVisibility(true);
   };
 
   return (
@@ -56,4 +62,4 @@ export function HomeView() {
   );
 }
 
-export { changeTitle };
+export { changeTitle, showSubTitle };

@@ -64,6 +64,17 @@ export class NearService {
     });
   }
 
+  async getNFTById(nft_contract_id, nft_id) {
+    const contract = new Contract(this.wallet.account(), nft_contract_id, {
+      viewMethods: ["nft_token"],
+      sender: this.wallet.account(),
+    });
+
+    const params = { token_id: nft_id };
+
+    return contract.nft_token(params);
+  }
+
   async sendToken({ nft_id, nft_contract_id, transaction_id }) {
     const contract = new Contract(this.wallet.account(), nft_contract_id, {
       changeMethods: ["nft_transfer_call"],
@@ -76,7 +87,7 @@ export class NearService {
       msg: String(transaction_id),
     };
 
-    contract.nft_transfer_call(params, undefined, "1");
+    contract.nft_transfer_call(params, "200000000000000", "1");
   }
 
   async getTransferTokenResult(transactionHashes) {
@@ -109,6 +120,19 @@ export class NearService {
     contract.is_nft_locked(params, undefined, undefined);
   }
 
+  async cancelTransaction({ transaction_id }) {
+    const contract = new Contract(
+      this.wallet.account(),
+      _CONFIG_.esccrowContractId,
+      {
+        changeMethods: ["cancel_transaction"],
+        sender: this.wallet.account(),
+      }
+    );
+    const params = { transaction_id };
+    return contract.cancel_transaction(params, undefined, undefined);
+  }
+
   async collectTransaction({ transaction_id }) {
     const contract = new Contract(
       this.wallet.account(),
@@ -134,7 +158,7 @@ export class NearService {
     );
 
     const params = { transaction_id };
-    contract.transfer_nft(params, undefined, undefined);
+    return contract.transfer_nft(params, undefined, undefined);
   }
 
   async createTransaction({ sellerWallet, amount, tokenId, contractAddress }) {
@@ -226,5 +250,22 @@ export class NearService {
     };
 
     return contract.get_transactions_by_account(params);
+  }
+
+  getNumberOfTransactionsByAccount() {
+    const contract = new Contract(
+      this.wallet.account(),
+      _CONFIG_.esccrowContractId,
+      {
+        viewMethods: ["get_number_of_transactions_by_account"],
+        sender: this.wallet.account(),
+      }
+    );
+
+    const params = {
+      account_id: this.wallet.getAccountId(),
+    };
+
+    return contract.get_number_of_transactions_by_account(params);
   }
 }
