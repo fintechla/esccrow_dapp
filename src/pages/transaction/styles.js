@@ -35,6 +35,26 @@ export const Data = styled(DataComponent)`
 
 export const Table2 = styled(Table)`
   margin-top: 30px;
+  width: 100%;
+  td {
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--dark);
+    font-style: normal;
+  }
+  td b {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--dark);
+  }
+  td span {
+    display: block;
+    padding-bottom: 40px;
+    max-width: 263px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 `;
 
 export const Table1 = styled(Table)`
@@ -73,4 +93,25 @@ export const CardTitle = styled.h4`
   color: var(--dark);
 `;
 
-export const CardBody = styled.div``;
+export const CardBody = styled.div`
+  padding-bottom: 60px;
+`;
+
+export const MaxTime = styled.p`
+  color: var(--dark);
+  font-size: 24px;
+  font-weight: 400;
+`;
+
+export const Confirm = styled.p`
+  color: var(--dark);
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 18px;
+`;
+
+export const ButtonBlock = styled.div`
+  display: flex;
+  gap: 50px;
+  margin-top: 25px;
+`;

@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { BuyerFlowView } from "./BuyerFlowView";
-import { hideMenu } from "../tab-navigation/TabNavigationView";
-import { changeTitle } from "../../pages/home/HomeView";
+import { hideMenu, showMenu } from "../tab-navigation/TabNavigationView";
+import { changeTitle, showSubTitle } from "../../pages/home/HomeView";
 import { showModal, hideModal } from "../Modal/ModalContainer";
 import { TokenSelector } from "../token-selector";
 import { NearService } from "../../services/NearService";
@@ -36,13 +36,30 @@ export function BuyerFlowContainer(props) {
 
     setData({ ...data, transactionId: result.transaction_id });
     changeTitle("Begin a transaction");
+    showSubTitle();
     setStep(5);
+  };
+
+  const handleClickReset = async () => {
+    setData({
+      transactionId: "",
+      tokenId: "",
+      contractAddress: "",
+      amount: 0,
+      sellerWallet: "",
+      maxDatePayment: "",
+    });
+    showMenu();
+    changeTitle(
+      "Easiest, safest and most decentralized way to buy and sell NFTs"
+    );
+    setStep(1);
   };
 
   const handleSubmitStepOne = async () => {
     if (!(await validate(data))) return;
 
-    hideMenu(true);
+    hideMenu();
     changeTitle("Begin a transaction");
     setStep(2);
   };
@@ -96,6 +113,7 @@ export function BuyerFlowContainer(props) {
       onSubmitStepFour={handleSubmitStepFour}
       onClickSelectTokenBtn={handleClickSelectTokenBtn}
       startBuyerFlow={startBuyerFlow}
+      reset={handleClickReset}
     />
   );
 }

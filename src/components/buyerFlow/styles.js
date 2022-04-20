@@ -205,3 +205,13 @@ export const TokenIdBtn = styled.button`
   font-weight: 400;
   cursor: pointer;
 `;
+
+export const CloseButton = styled.button`
+  background-color: transparent;
+  cursor: pointer;
+  padding: 5px;
+  border: 0;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+`;
