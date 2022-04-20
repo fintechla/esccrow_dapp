@@ -2,10 +2,26 @@ export function TableRow({ className, data }) {
   const getFields = () => {
     return data.map((itm, idx) => {
       let value = itm;
+      let rowspan = 1;
+      let textAlign;
+      let verticalAlign;
+
       if (typeof itm === "object") {
         value = itm.content;
+        rowspan = itm.rowspan ?? 1;
+        textAlign = itm.textAlign;
+        verticalAlign = itm.verticalAlign;
       }
-      return <td key={"td-" + idx}>{value}</td>;
+
+      return (
+        <td
+          style={{ textAlign, verticalAlign }}
+          key={"td-" + idx}
+          rowSpan={rowspan}
+        >
+          {value}
+        </td>
+      );
     });
   };
   return <tr className={className}>{getFields()}</tr>;

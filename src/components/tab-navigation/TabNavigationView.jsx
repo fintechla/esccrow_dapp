@@ -8,6 +8,7 @@ import {
 } from "./styles";
 
 let hideMenu = undefined;
+let showMenu = undefined;
 
 export function TabNavigationView({ className, children }) {
   const orderItems = [...children].sort(
@@ -40,6 +41,10 @@ export function TabNavigationView({ className, children }) {
     setMenuIsVisible(false);
   };
 
+  showMenu = () => {
+    setMenuIsVisible(true);
+  };
+
   return (
     <TabNavigationContainer>
       <MenuContainer menuIsVisible={menuIsVisible}>
@@ -52,4 +57,4 @@ export function TabNavigationView({ className, children }) {
   );
 }
 
-export { hideMenu };
+export { hideMenu, showMenu };
