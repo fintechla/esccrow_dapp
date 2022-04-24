@@ -174,7 +174,7 @@ export class NearService {
     const params = {
       seller_id: sellerWallet,
       buyer_id: this.wallet.getAccountId(),
-      price: amount * 1,
+      price: parseNearAmount(amount),
       nft_id: tokenId,
       nft_contract_id: contractAddress,
       callbackUrl: "https://example.com/callback",
