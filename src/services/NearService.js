@@ -144,7 +144,7 @@ export class NearService {
     );
 
     const params = { transaction_id };
-    contract.pay_transaction(params, undefined, undefined);
+    return contract.pay_transaction(params, undefined, undefined);
   }
 
   async collectNFT({ transaction_id }) {
@@ -177,6 +177,7 @@ export class NearService {
       price: amount * 1,
       nft_id: tokenId,
       nft_contract_id: contractAddress,
+      callbackUrl: "https://example.com/callback",
     };
 
     const deposit = String(amount * 1 + 0.1);

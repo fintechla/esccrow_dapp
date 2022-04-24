@@ -14,7 +14,8 @@ import {
   Link,
 } from "./styles";
 import { NearService } from "../../services/NearService";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import { navigate } from "../../components/fleek-router";
 import { ReceiveTokensModal } from "../../components/receive-tokens-modal";
 import { ReceiveNFTModal } from "../../components/receive-nft-modal";
 import { hideModal, showModal } from "../../components/Modal/ModalContainer";
@@ -22,7 +23,7 @@ import { hideModal, showModal } from "../../components/Modal/ModalContainer";
 export function Transactions({}) {
   const [transactions, setTransactions] = useState([]);
   const nearService = new NearService();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const init = () => {
     getTransactions();
@@ -63,7 +64,7 @@ export function Transactions({}) {
                   getTransactions();
                 }}
                 seeMoreDetails={() => {
-                  navigate(`./${transaction_id}`);
+                  navigate("transaction", { id: transaction_id });
                   hideModal();
                 }}
                 transactionId={transaction_id}
@@ -93,7 +94,7 @@ export function Transactions({}) {
       action = (
         <RefreshButton
           onClick={() => {
-            navigate(`./${transaction_id}`);
+            navigate("transaction", { id: transaction_id });
           }}
         >
           Check it
@@ -125,8 +126,12 @@ export function Transactions({}) {
       const status = getActionButton(trx);
       return (
         <tr key={transaction_id}>
-          <td>
-            <Link to={`/transactions/${transaction_id}`}>{transaction_id}</Link>
+          <td
+            onClick={() => {
+              navigate("transaction", { id: transaction_id });
+            }}
+          >
+            {transaction_id}
           </td>
           <td>{nft_id}</td>
           <td>{transaction_date}</td>

@@ -5,14 +5,14 @@ import { changeTitle, showSubTitle } from "../../pages/home/HomeView";
 import { showModal, hideModal } from "../Modal/ModalContainer";
 import { TokenSelector } from "../token-selector";
 import { NearService } from "../../services/NearService";
-import { useLocation } from "react-router-dom";
-import { validate } from "./validate";
+// import { useLocation } from "react-router-dom";
+import { validate, validateStep2 } from "./validate";
+import { Query } from "../fleek-router/utils/Query";
 
-function useQuery() {
-  const { search } = useLocation();
-
-  return useMemo(() => new URLSearchParams(search), [search]);
-}
+// function useQuery() {
+//   const { search } = useLocation();
+//   return useMemo(() => new URLSearchParams(search), [search]);
+// }
 
 export function BuyerFlowContainer(props) {
   const [activeStep, setStep] = useState(1);
@@ -24,11 +24,12 @@ export function BuyerFlowContainer(props) {
     sellerWallet: "",
     maxDatePayment: "",
   });
-  const query = useQuery();
+  // // const query = useQuery();
+  const query = new Query();
   const nearService = new NearService();
 
   const validateTransactionStatus = async () => {
-    const transactionHashes = query.get("transactionHashes");
+    const transactionHashes = query.params.transactionHashes;
 
     if (!transactionHashes) return;
 
@@ -65,6 +66,7 @@ export function BuyerFlowContainer(props) {
   };
 
   const handleSubmitStepTwo = async () => {
+    if (!validateStep2(data)) return;
     changeTitle("Confirm transaction details");
     setStep(3);
   };
@@ -96,7 +98,7 @@ export function BuyerFlowContainer(props) {
     showModal(content);
   };
 
-  const startBuyerFlow = () => {};
+  // const startBuyerFlow = () => {};
 
   useEffect(() => {
     validateTransactionStatus();
@@ -112,7 +114,7 @@ export function BuyerFlowContainer(props) {
       onSubmitStepThree={handleSubmitStepThree}
       onSubmitStepFour={handleSubmitStepFour}
       onClickSelectTokenBtn={handleClickSelectTokenBtn}
-      startBuyerFlow={startBuyerFlow}
+      // startBuyerFlow={startBuyerFlow}
       reset={handleClickReset}
     />
   );

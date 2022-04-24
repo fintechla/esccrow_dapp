@@ -10,14 +10,15 @@ import {
 } from "./styles";
 import { Button } from "../../components/button";
 import { NearService } from "../../services/NearService";
+import { navigate } from "../fleek-router";
 
 export function ReceiveTokensModal({ transaction }) {
   const nearService = new NearService();
 
-  console.log(transaction);
-
-  const handleClickWithdraw = () => {
-    nearService.collectTransaction(transaction);
+  const handleClickWithdraw = async () => {
+    await nearService.collectTransaction(transaction);
+    hideModal();
+    navigate("transactions");
   };
 
   return (

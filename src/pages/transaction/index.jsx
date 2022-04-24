@@ -17,16 +17,19 @@ import {
 } from "./styles";
 import { Button } from "../../components/button";
 import { NearService } from "../../services/NearService";
-import { useParams, useNavigate } from "react-router-dom";
+import { navigate } from "../../components/fleek-router";
+// import { useParams, useNavigate } from "react-router-dom";
 import { TableRow } from "../../components/table";
 import { showModal } from "../../components/Modal/ModalContainer";
 import { ReceiveTokensModal } from "../../components/receive-tokens-modal";
+import { Query } from "../../components/fleek-router/utils/Query";
 
 export function Transaction(props) {
-  const navigate = useNavigate();
   const [transaction, setTransaction] = useState({});
   const [NFT, setNFT] = useState();
-  const { transactionId } = useParams();
+
+  const query = new Query();
+  const transactionId = query.params.id;
   const nearService = new NearService();
 
   const init = () => {
@@ -35,7 +38,6 @@ export function Transaction(props) {
 
   const getTransaction = async () => {
     const result = await nearService.getTransactionById(transactionId);
-    console.log(result);
     setTransaction(result);
   };
 
@@ -52,7 +54,7 @@ export function Transaction(props) {
   };
 
   const goBack = () => {
-    navigate("../");
+    navigate("transactions");
   };
 
   const cancelTransaction = async () => {
