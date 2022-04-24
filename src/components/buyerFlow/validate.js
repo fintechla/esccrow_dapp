@@ -5,6 +5,13 @@ function isEmpty(value) {
   return false;
 }
 
+export function validateStep2({ tokenId }) {
+  if (isEmpty(tokenId)) {
+    return false;
+  }
+  return true;
+}
+
 export async function validate({ contractAddress, sellerWallet }) {
   const nearService = new NearService();
 

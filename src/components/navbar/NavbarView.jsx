@@ -46,10 +46,19 @@ export function NavbarView({
         <Row alignItems="center">
           <Logo />
           <MenuNav>
-            <MenuItem to="/">Home</MenuItem>
-            <MenuItem to="/about">About</MenuItem>
-            <MenuItem to="/community">Community</MenuItem>
-            <MenuItem to="/support">Support</MenuItem>
+            <MenuItem to="home">Home</MenuItem>
+            <MenuItem
+              to="https://fintechlab.la/decentralized-escrow-service-what-is-it-and-how-does-it-work/"
+              foreign
+            >
+              About
+            </MenuItem>
+            <MenuItem to="https://t.me/fintechlablatam" foreign>
+              Community
+            </MenuItem>
+            <MenuItem to="https://discord.gg/c2UMeuNy" foreign>
+              Support
+            </MenuItem>
           </MenuNav>
           <Toolbar alignItems="center" gap="20px">
             <Button color="info" href="#">

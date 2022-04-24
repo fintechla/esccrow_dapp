@@ -15,12 +15,11 @@ import { ReactComponent as FinchechLabLogo } from "../../assets/images/fintechla
 import { Stepbar } from "../stepbar";
 import { _CONFIG_ } from "../../config";
 import { NearService } from "../../services/NearService";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import { navigate } from "../fleek-router";
 
-export function StepFive({ data }) {
-  const { transactionId } = data;
-  const navigate = useNavigate();
-  const url = _CONFIG_.url + `/transactions`;
+export function StepFive() {
+  const url = _CONFIG_.url + `?page=transactions`;
   return (
     <Column pt="28px" pb="28px">
       <Stepbar steps={4} progress={4}></Stepbar>
@@ -36,7 +35,6 @@ export function StepFive({ data }) {
         <SocialBlock>
           <SocialButton
             onClick={() => {
-              console.log("eso mar");
               window.open("https://api.whatsapp.com/send?text=" + url);
             }}
           >
@@ -49,7 +47,7 @@ export function StepFive({ data }) {
           size="lg"
           color="accent"
           onClick={() => {
-            navigate("/transactions");
+            navigate("transactions");
           }}
         >
           Go to dashboard
