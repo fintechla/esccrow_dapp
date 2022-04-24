@@ -5,7 +5,7 @@ import { InputText, InputDate, InputCheckbox } from "../input";
 import { Button } from "../button";
 import { PoweredBlock } from "./styles";
 import { ReactComponent as FinchechLabLogo } from "../../assets/images/fintechlab-logo.svg";
-import { Link } from "react-router-dom";
+import { Link } from "../fleek-router/Link";
 import { Stepbar } from "../stepbar";
 import { ReactComponent as CloseSvg } from "../../assets/icons/close.svg";
 

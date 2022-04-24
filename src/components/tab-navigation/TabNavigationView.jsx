@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { navigate } from "../fleek-router";
 import {
   MenuItem,
   Menu,
@@ -29,7 +30,11 @@ export function TabNavigationView({ className, children }) {
         key={item.props.order}
         active={item.props.order === activeItem.props.order ? true : false}
         onClick={() => {
-          handleClickMenuItem(item);
+          if (item.props.navigateTo) {
+            navigate(item.props.navigateTo);
+          } else {
+            handleClickMenuItem(item);
+          }
         }}
       >
         {item.props.title}

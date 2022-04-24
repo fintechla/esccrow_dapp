@@ -41,7 +41,9 @@ export function HomeView(props) {
         <TabNavigationItem order={1} title="Buy">
           <BuyerFlow />
         </TabNavigationItem>
-        <TabNavigationItem order={2} title="Sell" navigateTo="transactions" />
+        <TabNavigationItem order={2} title="Sell">
+          <SellerFlow />
+        </TabNavigationItem>
       </TabNavigation>
       <Reminder reminderVisibility={reminderVisibility}>
         <Row mb="12px" alignItems="baseline">
