@@ -174,10 +174,9 @@ export class NearService {
     const params = {
       seller_id: sellerWallet,
       buyer_id: this.wallet.getAccountId(),
-      price: parseNearAmount(amount),
+      price: Number(amount * 1),
       nft_id: tokenId,
       nft_contract_id: contractAddress,
-      callbackUrl: "https://example.com/callback",
     };
 
     const deposit = String(amount * 1 + 0.1);
