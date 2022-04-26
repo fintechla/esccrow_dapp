@@ -28,7 +28,10 @@ export function ReceiveNFTModal({
 
   const getAction = () => {
     const { transaction_status } = transaction;
-    if (transaction_status === "Payed") {
+    if (
+      transaction_status === "Payed" ||
+      transaction.transaction_status === "TokensAndNFTLocked"
+    ) {
       return (
         <Button size="lg" color="accent" onClick={handleClickWithdraw}>
           Withdraw
@@ -61,12 +64,14 @@ export function ReceiveNFTModal({
       </CloseBtn>
       <ModalBody>
         <Title>
-          {transaction.transaction_status === "Payed"
+          {transaction.transaction_status === "Payed" ||
+          transaction.transaction_status === "TokensAndNFTLocked"
             ? "Congratulations!"
             : "Your transaction"}
         </Title>
         <SubTitle>
-          {transaction.transaction_status === "Payed"
+          {transaction.transaction_status === "Payed" ||
+          transaction.transaction_status === "TokensAndNFTLocked"
             ? "your NFT is available"
             : "is waiting for approvement"}
         </SubTitle>
