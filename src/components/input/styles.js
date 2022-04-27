@@ -16,6 +16,7 @@ export const Input = styled.input`
   color: var(--dark);
   max-width: calc(100% - 50px);
   width: 100%;
+  ${(props) => (props.error ? "border-color: red;" : "")}
 
   &:focus-visible {
     outline: 0;
