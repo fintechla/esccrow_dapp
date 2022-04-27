@@ -76,7 +76,7 @@ export function Transaction(props) {
       transaction_status === "TokensLocked" &&
       nearService.wallet.getAccountId() === seller_id
     ) {
-      buttonText = "Send Token";
+      buttonText = "Send your NFT";
       action = () => {
         nearService.sendToken(transaction);
       };
@@ -105,6 +105,27 @@ export function Transaction(props) {
     );
   };
 
+  const getFirstTableHeaders = () => {
+    let headers = ["Token ID", "Digital asset", "Price"];
+    if (transaction.seller_id === nearService.wallet.getAccountId()) {
+      headers = [...headers, "Fee", "You receive"];
+    }
+    return headers;
+  };
+
+  const getFirstTableData = () => {
+    const price = transaction.price
+      ? nearService.parseYoctoToNears(transaction.price)
+      : "";
+    let data = [transaction.nft_id, transaction.seller_id, price];
+    if (transaction.seller_id === nearService.wallet.getAccountId()) {
+      const fee = price ? price * 0.1 : "";
+      const neto = price ? price - fee : "";
+      data = [...data, fee, neto];
+    }
+    return data;
+  };
+
   useEffect(init, []);
   useEffect(getNFT, [transaction]);
 
@@ -117,16 +138,8 @@ export function Transaction(props) {
           <Data field="Transaction number" value={transactionId} />
         </TimeBlock>
       </Header>
-      <Table1 headers={["Token ID", "Digital asset", "Price"]}>
-        <TableRow
-          data={[
-            transaction.nft_id,
-            transaction.seller_id,
-            transaction.price
-              ? nearService.parseYoctoToNears(transaction.price)
-              : "",
-          ]}
-        />
+      <Table1 headers={getFirstTableHeaders()}>
+        <TableRow data={getFirstTableData()} />
       </Table1>
       <Card>
         <CardHeader>
@@ -141,12 +154,32 @@ export function Transaction(props) {
                   rowspan: "2",
                   verticalAlign: "initial",
                 },
-                { content: <b>Wallet seller</b> },
+                {
+                  content: (
+                    <b>
+                      {transaction.seller_id ===
+                      nearService.wallet.getAccountId()
+                        ? "Buyer wallet"
+                        : "Wallet seller"}
+                    </b>
+                  ),
+                },
                 { content: getNFTImage(), rowspan: "8", textAlign: "center" },
               ]}
             />
             <TableRow
-              data={[{ content: <span>{transaction.seller_id}</span> }]}
+              data={[
+                {
+                  content: (
+                    <span>
+                      {transaction.seller_id ===
+                      nearService.wallet.getAccountId()
+                        ? transaction.buyer_id
+                        : transaction.seller_id}
+                    </span>
+                  ),
+                },
+              ]}
             />
             <TableRow
               data={[
@@ -180,12 +213,17 @@ export function Transaction(props) {
           <Confirm>As soon as you receive the NFT, confirm the payment</Confirm>
           <ButtonBlock>
             {getActionButton()}
-            {transaction.transaction_status === "Cancelled" ? (
+            {transaction.transaction_status === "Cancelled" ||
+            (transaction.transaction_status === "TokensAndNFTLocked" &&
+              transaction.seller_id === nearService.wallet.getAccountId()) ? (
               <Button size="lg" color="secondary" onClick={goBack}>
                 Go back
               </Button>
             ) : transaction.transaction_status === "Completed" ||
-              transaction.transaction_status === "CancelledandPayed" ? (
+              transaction.transaction_status === "Payed" ||
+              transaction.transaction_status === "CancelledandPayed" ||
+              (transaction.transaction_status === "TokensAndNFTLocked" &&
+                transaction.seller_id !== nearService.wallet.getAccountId()) ? (
               ""
             ) : (
               <Button size="lg" color="secondary" onClick={cancelTransaction}>
