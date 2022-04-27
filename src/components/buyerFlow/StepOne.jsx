@@ -7,7 +7,7 @@ import { Button } from "../button";
 import { PoweredBlock } from "./styles";
 import { ReactComponent as FinchechLabLogo } from "../../assets/images/fintechlab-logo.svg";
 
-export function StepOne({ onSubmitStepOne, onChangeData, data }) {
+export function StepOne({ onSubmitStepOne, onChangeData, data, errors }) {
   const { tokenId, contractAddress, amount, sellerWallet } = data;
   const blockchain = "near";
 
@@ -39,6 +39,7 @@ export function StepOne({ onSubmitStepOne, onChangeData, data }) {
           mt="12px"
           value={contractAddress}
           onChange={(e) => onChangeData({ contractAddress: e.target.value })}
+          error={errors.contractAddress}
         />
       </Row>
       <Row>
@@ -49,6 +50,7 @@ export function StepOne({ onSubmitStepOne, onChangeData, data }) {
           mt="20px"
           value={sellerWallet}
           onChange={(e) => onChangeData({ sellerWallet: e.target.value })}
+          error={errors.sellerWallet}
         />
         <Select
           options={[

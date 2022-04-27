@@ -18,6 +18,13 @@ import { NearService } from "../../services/NearService";
 export function StepFour({ onSubmitStepFour, data }) {
   const { amount } = data;
   const nearService = new NearService();
+  const nearLogin = () => {
+    if (!nearService.isSigned()) {
+      localStorage.setItem("new-transaction", JSON.stringify(data));
+      nearService.signIn();
+    }
+  };
+
   return (
     <Column pt="28px" pb="28px">
       <Stepbar steps={4} progress={3}></Stepbar>
@@ -27,20 +34,10 @@ export function StepFour({ onSubmitStepFour, data }) {
           {nearService.isSigned() ? (
             <Value>{nearService.wallet.getAccountId()}</Value>
           ) : (
-            <BtnWallet
-              onClick={() => {
-                if (!nearService.isSigned()) {
-                  nearService.signIn();
-                }
-              }}
-            >
-              Connect wallet
-            </BtnWallet>
+            <BtnWallet onClick={nearLogin}>Connect wallet</BtnWallet>
           )}
         </StepRow>
-        <StepRow>
-          <P>Enter your Near Protocol address here</P>
-        </StepRow>
+        <StepRow>{/* <P>Enter your Near Protocol address here</P> */}</StepRow>
       </WalletBlock>
       <PriceBlock>
         <StepRow justifyContent={"space-between"}>
@@ -49,7 +46,7 @@ export function StepFour({ onSubmitStepFour, data }) {
         </StepRow>
         <StepRow justifyContent={"space-between"}>
           <Data>Network fee</Data>
-          <Value>0.25</Value>
+          <Value>0.1</Value>
         </StepRow>
         <StepRow justifyContent={"space-between"}>
           <Data>EscStepRow fee</Data>
@@ -57,7 +54,7 @@ export function StepFour({ onSubmitStepFour, data }) {
         </StepRow>
         <StepRow justifyContent={"space-between"}>
           <H5>Total</H5>
-          <H5>{Number(amount) + 0.25}</H5>
+          <H5>{Number(amount) + 0.1}</H5>
         </StepRow>
       </PriceBlock>
       <Column justifyContent="center" mt="30px" alignItems="center">

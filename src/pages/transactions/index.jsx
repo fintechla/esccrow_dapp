@@ -100,6 +100,17 @@ export function Transactions({}) {
           Check it
         </RefreshButton>
       );
+    } else if (transaction_status === "Cancelled" && seller_id !== user_id) {
+      action = (
+        <RefreshButton
+          onClick={async () => {
+            await nearService.collectTransaction(trx);
+            getTransactions();
+          }}
+        >
+          Withdraw
+        </RefreshButton>
+      );
     }
 
     return action;

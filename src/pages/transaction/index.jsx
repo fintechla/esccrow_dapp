@@ -88,8 +88,16 @@ export function Transaction(props) {
       action = () => {
         showCollectTokensModal();
       };
+    } else if (
+      transaction_status === "Cancelled" &&
+      nearService.wallet.getAccountId() !== seller_id
+    ) {
+      buttonText = "Withdraw";
+      action = async () => {
+        await nearService.collectTransaction(transaction);
+        goBack();
+      };
     }
-
     return (
       <Button size="lg" color="accent" onClick={action}>
         {buttonText}
@@ -105,7 +113,7 @@ export function Transaction(props) {
       <Header>
         <Title>Transaction detail</Title>
         <TimeBlock>
-          <Data field="Create time" value="15:56" />
+          {/* <Data field="Create time" value="15:56" /> */}
           <Data field="Transaction number" value={transactionId} />
         </TimeBlock>
       </Header>
@@ -168,13 +176,22 @@ export function Transaction(props) {
               ]}
             />
           </Table2>
-          <MaxTime>Maximum day to recieve payment: 2022/02/28 23:59:59</MaxTime>
+          {/* <MaxTime>Maximum day to recieve payment: 2022/02/28 23:59:59</MaxTime> */}
           <Confirm>As soon as you receive the NFT, confirm the payment</Confirm>
           <ButtonBlock>
             {getActionButton()}
-            <Button size="lg" color="secondary" onClick={cancelTransaction}>
-              Cancel
-            </Button>
+            {transaction.transaction_status === "Cancelled" ? (
+              <Button size="lg" color="secondary" onClick={goBack}>
+                Go back
+              </Button>
+            ) : transaction.transaction_status === "Completed" ||
+              transaction.transaction_status === "CancelledandPayed" ? (
+              ""
+            ) : (
+              <Button size="lg" color="secondary" onClick={cancelTransaction}>
+                Cancel
+              </Button>
+            )}
           </ButtonBlock>
         </CardBody>
       </Card>

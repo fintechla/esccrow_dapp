@@ -10,7 +10,9 @@ export function InputTextView({
   width,
   onChange,
   disabled,
+  error,
 }) {
+  console.log(error);
   return (
     <Column mt={mt} className={className} width={width}>
       <Label>{label}</Label>
@@ -19,6 +21,7 @@ export function InputTextView({
         value={value}
         onChange={onChange}
         disabled={disabled ? true : false}
+        error={error}
       />
     </Column>
   );
