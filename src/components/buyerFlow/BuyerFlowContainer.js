@@ -16,6 +16,7 @@ import { Query } from "../fleek-router/utils/Query";
 
 export function BuyerFlowContainer(props) {
   const [activeStep, setStep] = useState(1);
+  const [errors, setErrors] = useState({});
   const [data, setData] = useState({
     transactionId: "",
     tokenId: "",
@@ -58,8 +59,13 @@ export function BuyerFlowContainer(props) {
   };
 
   const handleSubmitStepOne = async () => {
-    if (!(await validate(data))) return;
+    const validation = await validate(data);
+    if (validation !== undefined) {
+      setErrors(validation);
+      return;
+    }
 
+    setErrors({});
     hideMenu();
     changeTitle("Begin a transaction");
     setStep(2);
@@ -98,16 +104,30 @@ export function BuyerFlowContainer(props) {
     showModal(content);
   };
 
+  const resumeTransaction = () => {
+    const pausedTransaction = JSON.parse(
+      localStorage.getItem("new-transaction")
+    );
+    if (pausedTransaction) {
+      changeTitle("Approve payment");
+      setStep(4);
+      setData(pausedTransaction);
+      localStorage.removeItem("new-transaction");
+    }
+  };
+
   // const startBuyerFlow = () => {};
 
   useEffect(() => {
     validateTransactionStatus();
+    resumeTransaction();
   }, []);
 
   return (
     <BuyerFlowView
       step={activeStep}
       data={data}
+      errors={errors}
       onChangeData={handleChangeData}
       onSubmitStepOne={handleSubmitStepOne}
       onSubmitStepTwo={handleSubmitStepTwo}

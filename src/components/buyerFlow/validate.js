@@ -14,15 +14,27 @@ export function validateStep2({ tokenId }) {
 
 export async function validate({ contractAddress, sellerWallet }) {
   const nearService = new NearService();
+  const errors = {};
 
-  if (
-    isEmpty(contractAddress) ||
-    isEmpty(sellerWallet) ||
-    !(await nearService.isAnAccount(sellerWallet)) ||
-    !(await nearService.isAContract(contractAddress))
-  ) {
-    return false;
+  if (isEmpty(contractAddress)) {
+    errors.contractAddress = "You must put a contract address";
   }
 
-  return true;
+  if (isEmpty(sellerWallet)) {
+    errors.sellerWallet = "You must put a seller wallet";
+  }
+
+  if (!(await nearService.isAnAccount(sellerWallet))) {
+    errors.sellerWallet = "Please put a valid seller wallet";
+  }
+
+  if (!(await nearService.isAContract(contractAddress))) {
+    errors.contractAddress = "Please put a valid contract address";
+  }
+
+  if (Object.keys(errors).length === 0) {
+    return undefined;
+  }
+
+  return errors;
 }

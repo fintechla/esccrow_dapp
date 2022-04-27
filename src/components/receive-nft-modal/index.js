@@ -8,6 +8,7 @@ import {
   SubTitle,
   ModalBody,
   CongratsImg,
+  AwaitImg,
 } from "./styles";
 import { Button } from "../../components/button";
 import { NearService } from "../../services/NearService";
@@ -70,7 +71,11 @@ export function ReceiveNFTModal({
             ? "your NFT is available"
             : "is waiting for approvement"}
         </SubTitle>
-        <CongratsImg />
+        {transaction.transaction_status === "Payed" ? (
+          <CongratsImg />
+        ) : (
+          <AwaitImg />
+        )}
         {getAction()}
       </ModalBody>
     </ModalContent>
