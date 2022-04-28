@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { DataComponent } from "./utils";
 import { Table } from "../../components/table";
+import { CopyButton as CopyButtonComponent } from "../../components/copy-button";
 
 export const Title = styled.h3`
   font-size: 28px;
@@ -41,15 +42,21 @@ export const Table2 = styled(Table)`
     font-weight: 400;
     color: var(--dark);
     font-style: normal;
+    position: relative;
   }
   td b {
     font-size: 18px;
     font-weight: 600;
     color: var(--dark);
   }
+  td div {
+    padding-bottom: 40px;
+    display: flex;
+    align-items: center;
+  }
   td span {
     display: block;
-    padding-bottom: 40px;
+    align-items: center;
     max-width: 263px;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -72,6 +79,10 @@ export const Table1 = styled(Table)`
   td {
     font-size: 26px;
     font-weight: 400;
+  }
+  td div {
+    display: flex;
+    align-items: center;
   }
 `;
 
@@ -114,4 +125,8 @@ export const ButtonBlock = styled.div`
   display: flex;
   gap: 50px;
   margin-top: 25px;
+`;
+
+export const CopyButton = styled(CopyButtonComponent)`
+  margin-left: 15px;
 `;

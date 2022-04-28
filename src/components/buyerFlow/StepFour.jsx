@@ -49,7 +49,7 @@ export function StepFour({ onSubmitStepFour, data }) {
           <Value>0.1</Value>
         </StepRow>
         <StepRow justifyContent={"space-between"}>
-          <Data>EscStepRow fee</Data>
+          <Data>Esccrow fee</Data>
           <Value>0.00</Value>
         </StepRow>
         <StepRow justifyContent={"space-between"}>
