@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { CopyButton as CopyButtonComponent } from "../copy-button";
 import { Row } from "../row";
 
 export const PoweredBlock = styled(Row)`
@@ -171,6 +172,7 @@ export const UrlBlock = styled.div`
   padding: 7px 20px 5px;
   margin-top: 20px;
   margin-bottom: 24px;
+  position: relative;
 `;
 
 export const SocialBlock = styled.div`
@@ -214,4 +216,9 @@ export const CloseButton = styled.button`
   position: absolute;
   right: 20px;
   top: 20px;
+`;
+
+export const CopyButton = styled(CopyButtonComponent)`
+  position: absolute;
+  right: 20px;
 `;

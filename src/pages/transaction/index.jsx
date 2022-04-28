@@ -14,6 +14,7 @@ import {
   MaxTime,
   Confirm,
   ButtonBlock,
+  CopyButton,
 } from "./styles";
 import { Button } from "../../components/button";
 import { NearService } from "../../services/NearService";
@@ -23,6 +24,7 @@ import { TableRow } from "../../components/table";
 import { showModal } from "../../components/Modal/ModalContainer";
 import { ReceiveTokensModal } from "../../components/receive-tokens-modal";
 import { Query } from "../../components/fleek-router/utils/Query";
+import { ReactComponent as NearSVG } from "../../assets/icons/near.svg";
 
 export function Transaction(props) {
   const [transaction, setTransaction] = useState({});
@@ -117,11 +119,39 @@ export function Transaction(props) {
     const price = transaction.price
       ? nearService.parseYoctoToNears(transaction.price)
       : "";
-    let data = [transaction.nft_id, transaction.seller_id, price];
+    let data = [
+      transaction.nft_id,
+      transaction.seller_id,
+      {
+        content: (
+          <div>
+            {price}
+            <NearSVG />
+          </div>
+        ),
+      },
+    ];
     if (transaction.seller_id === nearService.wallet.getAccountId()) {
-      const fee = price ? price * 0.1 : "";
+      const fee = price ? price * 0.01 : "";
       const neto = price ? price - fee : "";
-      data = [...data, fee, neto];
+      data = [
+        ...data,
+        {
+          content: (
+            <div>
+              {fee}
+              <NearSVG />
+            </div>
+          ),
+        },
+        {
+          content: (
+            <div>
+              {neto} <NearSVG />
+            </div>
+          ),
+        },
+      ];
     }
     return data;
   };
@@ -171,12 +201,22 @@ export function Transaction(props) {
               data={[
                 {
                   content: (
-                    <span>
-                      {transaction.seller_id ===
-                      nearService.wallet.getAccountId()
-                        ? transaction.buyer_id
-                        : transaction.seller_id}
-                    </span>
+                    <div>
+                      <span>
+                        {transaction.seller_id ===
+                        nearService.wallet.getAccountId()
+                          ? transaction.buyer_id
+                          : transaction.seller_id}
+                      </span>
+                      <CopyButton
+                        text={
+                          transaction.seller_id ===
+                          nearService.wallet.getAccountId()
+                            ? transaction.buyer_id
+                            : transaction.seller_id
+                        }
+                      />
+                    </div>
                   ),
                 },
               ]}
@@ -191,26 +231,51 @@ export function Transaction(props) {
                 { content: <b>Token ID</b> },
               ]}
             />
-            <TableRow data={[{ content: <span>{transaction.nft_id}</span> }]} />
+            <TableRow
+              data={[
+                {
+                  content: (
+                    <div>
+                      <span>{transaction.nft_id}</span>
+                      <CopyButton text={transaction.nft_id} />
+                    </div>
+                  ),
+                },
+              ]}
+            />
             <TableRow data={[{ content: <b>Contract address</b> }]} />
             <TableRow
-              data={[{ content: <span>{transaction.nft_contract_id}</span> }]}
+              data={[
+                {
+                  content: (
+                    <div>
+                      <span>{transaction.nft_contract_id}</span>
+                      <CopyButton text={transaction.nft_contract_id} />
+                    </div>
+                  ),
+                },
+              ]}
             />
             <TableRow data={[{ content: <b>Image Link</b> }]} />
             <TableRow
               data={[
                 {
                   content: (
-                    <span>
-                      https://ipfs.fleek.co/ipfs/{NFT?.metadata.media}
-                    </span>
+                    <div>
+                      <span>
+                        https://ipfs.fleek.co/ipfs/{NFT?.metadata.media}
+                      </span>
+                      <CopyButton
+                        text={`https://ipfs.fleek.co/ipfs/${NFT?.metadata.media}`}
+                      />
+                    </div>
                   ),
                 },
               ]}
             />
           </Table2>
           {/* <MaxTime>Maximum day to recieve payment: 2022/02/28 23:59:59</MaxTime> */}
-          <Confirm>As soon as you receive the NFT, confirm the payment</Confirm>
+          {/* <Confirm>As soon as you receive the NFT, confirm the payment</Confirm> */}
           <ButtonBlock>
             {getActionButton()}
             {transaction.transaction_status === "Cancelled" ||

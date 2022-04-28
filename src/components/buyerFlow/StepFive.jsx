@@ -10,6 +10,7 @@ import {
   UrlBlock,
   SocialBlock,
   SocialButton,
+  CopyButton,
 } from "./styles";
 import { ReactComponent as FinchechLabLogo } from "../../assets/images/fintechlab-logo.svg";
 import { Stepbar } from "../stepbar";
@@ -42,7 +43,10 @@ export function StepFive() {
             <label>Whatsapp</label>
           </SocialButton>
         </SocialBlock>
-        <UrlBlock>{url}</UrlBlock>
+        <UrlBlock id="url-block">
+          {url}
+          <CopyButton text={url} />
+        </UrlBlock>
         <Button
           size="lg"
           color="accent"

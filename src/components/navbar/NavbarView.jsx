@@ -56,7 +56,7 @@ export function NavbarView({
             <MenuItem to="https://t.me/fintechlablatam" foreign>
               Community
             </MenuItem>
-            <MenuItem to="https://discord.gg/c2UMeuNy" foreign>
+            <MenuItem to="https://discord.gg/3x8NJN2zNh" foreign>
               Support
             </MenuItem>
           </MenuNav>
