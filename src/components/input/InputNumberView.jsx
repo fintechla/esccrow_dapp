@@ -9,6 +9,7 @@ export function InputNumberView({
   mt,
   width,
   onChange,
+  min,
 }) {
   return (
     <Column className={className} mt={mt} width={width}>
@@ -18,6 +19,7 @@ export function InputNumberView({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        min={min}
       />
     </Column>
   );
