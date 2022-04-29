@@ -20,7 +20,14 @@ export class Query {
     this.params = Object.fromEntries(this.urlSearchParams.entries());
   }
 
+  cleanParams() {
+    for (let param in this.params) {
+      this.urlSearchParams.delete(param);
+    }
+  }
+
   setParams(params) {
+    this.cleanParams();
     for (let param in params) {
       this.urlSearchParams.set(param, params[param]);
     }
