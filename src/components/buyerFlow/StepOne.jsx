@@ -71,6 +71,7 @@ export function StepOne({ onSubmitStepOne, onChangeData, data, errors }) {
           mt="12px"
           value={amount}
           onChange={(e) => onChangeData({ amount: e.target.value })}
+          min={0}
         />
         <Select
           options={[
