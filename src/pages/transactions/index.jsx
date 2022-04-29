@@ -14,7 +14,6 @@ import {
   Link,
 } from "./styles";
 import { NearService } from "../../services/NearService";
-// import { useNavigate } from "react-router-dom";
 import { navigate } from "../../components/fleek-router";
 import { ReceiveTokensModal } from "../../components/receive-tokens-modal";
 import { ReceiveNFTModal } from "../../components/receive-nft-modal";
@@ -22,11 +21,17 @@ import { hideModal, showModal } from "../../components/Modal/ModalContainer";
 
 export function Transactions({}) {
   const [transactions, setTransactions] = useState([]);
+  const [searchText, setSearchText] = useState("");
+
   const nearService = new NearService();
-  // const navigate = useNavigate();
 
   const init = () => {
     getTransactions();
+  };
+
+  const handleSearchInputChange = (evt) => {
+    console.log(evt);
+    setSearchText(evt.target.value);
   };
 
   const getTransactions = async () => {
@@ -117,13 +122,16 @@ export function Transactions({}) {
   };
 
   const getRows = () => {
-    const orderTransactions = transactions.sort((a, b) => {
-      if (a.transaction_id > b.transaction_id) {
-        return -1;
-      }
-      if (a.transaction_id < b.transaction_id) {
-        return 1;
-      }
+    const filteredTransactions =
+      searchText.trim() === ""
+        ? transactions
+        : transactions.filter(
+            (trx) => String(trx.transaction_id) === searchText.trim()
+          );
+
+    const orderTransactions = filteredTransactions.sort((a, b) => {
+      if (a.transaction_id > b.transaction_id) return -1;
+      if (a.transaction_id < b.transaction_id) return 1;
       return 0;
     });
 
@@ -135,6 +143,7 @@ export function Transactions({}) {
 
       const amount = nearService.parseYoctoToNears(price);
       const status = getActionButton(trx);
+
       return (
         <tr key={transaction_id}>
           <td
@@ -168,7 +177,11 @@ export function Transactions({}) {
       </StatusFilter>
       <FilterBlock>
         <SearchBlock>
-          <SearchIpt placeholder="Search transaction by ID" />
+          <SearchIpt
+            onChange={handleSearchInputChange}
+            placeholder="Search transaction by ID"
+            value={searchText}
+          />
           <FilterBtn>Filter</FilterBtn>
         </SearchBlock>
         <TransactionsCount>
