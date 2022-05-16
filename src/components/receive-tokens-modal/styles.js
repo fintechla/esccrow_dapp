@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { ReactComponent as CloseSvg } from "../../assets/icons/close.svg";
 import { ModalBody as ModalBodyComp } from "../Modal/styles";
 import { ReactComponent as CongratsSVG } from "../../assets/images/congrats.svg";
+import { ReactComponent as AwaitSVG } from "../../assets/images/await.svg";
 
 export const CloseBtn = styled.button`
   border: 0;
@@ -35,6 +36,11 @@ export const ModalBody = styled(ModalBodyComp)`
 `;
 
 export const CongratsImg = styled(CongratsSVG)`
+  margin-top: 25px;
+  margin-bottom: 25px;
+`;
+
+export const AwaitImg = styled(AwaitSVG)`
   margin-top: 25px;
   margin-bottom: 25px;
 `;

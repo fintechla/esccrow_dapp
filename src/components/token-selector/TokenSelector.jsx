@@ -17,57 +17,75 @@ import {
   NearIcon,
   CloseBtn,
   CloseImg,
+  InputSearch,
+  SearchBlock,
 } from "./styles";
 
 function TokenItem({ data, onClickToken, selected }) {
   return (
     <Token
       onClick={() => {
-        onClickToken(data.token_id);
+        onClickToken(data);
       }}
       selected={selected}
     >
-      <TokenImg
-        src={"https://ipfs.fleek.co/ipfs/" + data.metadata.media}
-        alt=""
-      />
       <TokenCaption>
-        <TokenTitle>{data.token_id}</TokenTitle>
+        {data.token_id}
         <NearSlug>
           <NearIcon />
           Near
         </NearSlug>
       </TokenCaption>
+      <TokenImg
+        src={"https://ipfs.fleek.co/ipfs/" + data.metadata.media}
+        alt=""
+      />
+      <TokenTitle>{data.metadata.title}</TokenTitle>
     </Token>
   );
 }
 
-export function TokenSelector({
-  contractAddress,
-  sellerWallet,
-  onSubmitTokenSelector,
-}) {
+export function TokenSelector({ sellerWallet, onSubmitTokenSelector }) {
   const [nfts, setNfts] = useState([]);
-  const [tokenSelectedId, setTokenSelectedId] = useState();
+  const [tokenSelected, setTokenSelected] = useState();
+  const [textToSearch, setTextToSearch] = useState("");
   const nearService = new NearService();
 
   const getNfts = async () => {
-    const nfts = await nearService.getNFTByContract(
-      contractAddress,
+    let nfts = [];
+
+    const nftContracts = await nearService.getNFTContractsByAccount(
       sellerWallet
     );
+
+    const results = await Promise.all(
+      nftContracts.map(async (nftContract) => {
+        const result = await nearService.getNFTByContract(
+          nftContract,
+          sellerWallet
+        );
+        return result.map((nft) => ({ ...nft, contract_id: nftContract }));
+      })
+    );
+
+    results.forEach((result) => {
+      nfts = [...nfts, ...result];
+    });
 
     setNfts(nfts);
   };
 
   const getTokenList = () => {
-    return nfts.map((token) => {
+    const filterNfts = nfts.filter((nft) =>
+      nft.metadata.title.toUpperCase().includes(textToSearch.toUpperCase())
+    );
+    return filterNfts.map((token) => {
       return (
         <TokenItem
-          selected={tokenSelectedId === token.token_id ? true : false}
+          selected={tokenSelected?.token_id === token.token_id ? true : false}
           key={token.token_id}
-          onClickToken={(token_id) => {
-            setTokenSelectedId(token_id);
+          onClickToken={(token) => {
+            setTokenSelected(token);
           }}
           data={token}
         />
@@ -87,13 +105,21 @@ export function TokenSelector({
       <ModalBody>
         <Title>Select the NFT you want to buy:</Title>
         <SubTitle>{sellerWallet}</SubTitle>
+        <SearchBlock type="text">
+          <InputSearch
+            onChange={(e) => {
+              setTextToSearch(e.target.value);
+            }}
+            placeholder="Buscar NFT"
+          />
+        </SearchBlock>
         <TokenList>{getTokenList()}</TokenList>
         <Column justifyContent="center" mt="30px" alignItems="center">
           <Button
             size="lg"
             color="accent"
             onClick={() => {
-              onSubmitTokenSelector(tokenSelectedId);
+              onSubmitTokenSelector(tokenSelected);
             }}
           >
             Confirm Selection

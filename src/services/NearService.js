@@ -1,23 +1,10 @@
-import { connect, keyStores, WalletConnection, Contract } from "near-api-js";
-import {
-  parseNearAmount,
-  formatNearAmount,
-} from "near-api-js/lib/utils/format";
 import * as buffer from "buffer";
+import { connect, keyStores, WalletConnection, Contract } from "near-api-js";
+import { formatNearAmount } from "near-api-js/lib/utils/format";
 import { _CONFIG_ } from "../config";
-
-const config = {
-  networkId: _CONFIG_.networkId,
-  keyStore: new keyStores.BrowserLocalStorageKeyStore(),
-  nodeUrl: _CONFIG_.nodeUrl,
-  walletUrl: _CONFIG_.walletUrl,
-  helperUrl: _CONFIG_.helperUrl,
-  explorerUrl: _CONFIG_.explorerUrl,
-};
+import axios from "axios";
 
 export class NearService {
-  static instance;
-
   constructor() {
     if (NearService.instance) {
       return NearService.instance;
@@ -28,7 +15,14 @@ export class NearService {
 
   async connect() {
     if (!this.near) {
-      this.near = await connect(config);
+      this.near = await connect({
+        networkId: _CONFIG_.networkId,
+        keyStore: new keyStores.BrowserLocalStorageKeyStore(),
+        nodeUrl: _CONFIG_.nodeUrl,
+        walletUrl: _CONFIG_.walletUrl,
+        helperUrl: _CONFIG_.helperUrl,
+        explorerUrl: _CONFIG_.explorerUrl,
+      });
       this.wallet = new WalletConnection(this.near);
     }
   }
@@ -42,26 +36,27 @@ export class NearService {
     );
   }
 
-  async belonsToEsccrow(contract_id, nft_id) {
-    const contract = new Contract(this.wallet.account(), contract_id, {
-      viewMethods: ["nft_token"],
-      sender: this.wallet.account(),
-    });
-
-    return contract.nft_token({
-      token_id: nft_id,
-    });
+  async getNFTContractsByAccount(accountId) {
+    const serviceUrl = `https://helper.${_CONFIG_.networkId}.near.org/account/${accountId}/likelyNFTs`;
+    const result = await axios.get(serviceUrl);
+    return result.data;
   }
 
   async getNFTByContract(contract_id, owner_account_id) {
-    const contract = new Contract(this.wallet.account(), contract_id, {
-      viewMethods: ["nft_tokens_for_owner"],
-      sender: this.wallet.account(),
-    });
+    try {
+      const contract = new Contract(this.wallet.account(), contract_id, {
+        viewMethods: ["nft_tokens_for_owner"],
+        sender: this.wallet.account(),
+      });
 
-    return contract.nft_tokens_for_owner({
-      account_id: owner_account_id,
-    });
+      const result = await contract.nft_tokens_for_owner({
+        account_id: owner_account_id,
+      });
+      return result;
+    } catch (err) {
+      console.log("err", contract_id);
+      return [];
+    }
   }
 
   async getNFTById(nft_contract_id, nft_id) {
@@ -73,114 +68,6 @@ export class NearService {
     const params = { token_id: nft_id };
 
     return contract.nft_token(params);
-  }
-
-  async sendToken({ nft_id, nft_contract_id, transaction_id }) {
-    const contract = new Contract(this.wallet.account(), nft_contract_id, {
-      changeMethods: ["nft_transfer_call"],
-      sender: this.wallet.account(),
-    });
-
-    const params = {
-      receiver_id: _CONFIG_.esccrowContractId,
-      token_id: nft_id,
-      msg: String(transaction_id),
-    };
-
-    contract.nft_transfer_call(params, "200000000000000", "1");
-  }
-
-  async getTransferTokenResult(transactionHashes) {
-    const result = await this.near.connection.provider.txStatus(
-      transactionHashes,
-      this.wallet.getAccountId()
-    );
-    return result;
-  }
-
-  async getTransactionResult(transactionHashes) {
-    const result = await this.near.connection.provider.txStatus(
-      transactionHashes,
-      this.wallet.getAccountId()
-    );
-    return JSON.parse(atob(result.status.SuccessValue));
-  }
-
-  async lockToken({ transaction_id, nft_contract_id, nft_id }) {
-    const contract = new Contract(
-      this.wallet.account(),
-      _CONFIG_.esccrowContractId,
-      {
-        changeMethods: ["is_nft_locked"],
-        sender: this.wallet.account(),
-      }
-    );
-
-    const params = { transaction_id, nft_contract_id, token_id: nft_id };
-    contract.is_nft_locked(params, undefined, undefined);
-  }
-
-  async cancelTransaction({ transaction_id }) {
-    const contract = new Contract(
-      this.wallet.account(),
-      _CONFIG_.esccrowContractId,
-      {
-        changeMethods: ["cancel_transaction"],
-        sender: this.wallet.account(),
-      }
-    );
-    const params = { transaction_id };
-    return contract.cancel_transaction(params, undefined, undefined);
-  }
-
-  async collectTransaction({ transaction_id }) {
-    const contract = new Contract(
-      this.wallet.account(),
-      _CONFIG_.esccrowContractId,
-      {
-        changeMethods: ["pay_transaction"],
-        sender: this.wallet.account(),
-      }
-    );
-
-    const params = { transaction_id };
-    return contract.pay_transaction(params, undefined, undefined);
-  }
-
-  async collectNFT({ transaction_id }) {
-    const contract = new Contract(
-      this.wallet.account(),
-      _CONFIG_.esccrowContractId,
-      {
-        changeMethods: ["transfer_nft"],
-        sender: this.wallet.account(),
-      }
-    );
-
-    const params = { transaction_id };
-    return contract.transfer_nft(params, undefined, undefined);
-  }
-
-  async createTransaction({ sellerWallet, amount, tokenId, contractAddress }) {
-    const contract = new Contract(
-      this.wallet.account(),
-      _CONFIG_.esccrowContractId,
-      {
-        changeMethods: ["create_transaction"],
-        sender: this.wallet.account(),
-      }
-    );
-
-    const params = {
-      seller_id: sellerWallet,
-      buyer_id: this.wallet.getAccountId(),
-      price: Number(amount * 1),
-      nft_id: tokenId,
-      nft_contract_id: contractAddress,
-    };
-
-    const deposit = String(amount * 1 + 0.1);
-    contract.create_transaction(params, undefined, parseNearAmount(deposit));
   }
 
   isSigned() {
@@ -213,19 +100,6 @@ export class NearService {
     }
   }
 
-  async getTransactionById(transactionId) {
-    const contract = new Contract(
-      this.wallet.account(),
-      _CONFIG_.esccrowContractId,
-      {
-        viewMethods: ["get_transaction_by_id"],
-        sender: this.wallet.account(),
-      }
-    );
-    const params = { transaction_id: Number(transactionId) };
-    return contract.get_transaction_by_id(params);
-  }
-
   parseYoctoToNears(yocto) {
     const numberStr = Number(yocto).toLocaleString("fullwide", {
       useGrouping: false,
@@ -233,39 +107,37 @@ export class NearService {
     return formatNearAmount(numberStr, 2);
   }
 
-  getTransactionsByAccount(fromIndex, limit) {
-    const contract = new Contract(
-      this.wallet.account(),
-      _CONFIG_.esccrowContractId,
-      {
-        viewMethods: ["get_transactions_by_account"],
-        sender: this.wallet.account(),
-      }
+  async getTransactionResult(transactionHashes) {
+    const result = await this.near.connection.provider.txStatus(
+      transactionHashes,
+      this.wallet.getAccountId()
     );
-
-    const params = {
-      account_id: this.wallet.getAccountId(),
-      from_index: String(fromIndex),
-      limit,
-    };
-
-    return contract.get_transactions_by_account(params);
+    return JSON.parse(atob(result.status.SuccessValue));
   }
 
-  getNumberOfTransactionsByAccount() {
-    const contract = new Contract(
-      this.wallet.account(),
-      _CONFIG_.esccrowContractId,
-      {
-        viewMethods: ["get_number_of_transactions_by_account"],
-        sender: this.wallet.account(),
-      }
-    );
+  async sendToken({ nft_id, nft_contract_id, transaction_id }) {
+    const contract = new Contract(this.wallet.account(), nft_contract_id, {
+      changeMethods: ["nft_transfer_call"],
+      sender: this.wallet.account(),
+    });
 
     const params = {
-      account_id: this.wallet.getAccountId(),
+      receiver_id: _CONFIG_.esccrowContractId,
+      token_id: nft_id,
+      msg: String(transaction_id),
     };
 
-    return contract.get_number_of_transactions_by_account(params);
+    contract.nft_transfer_call(params, "200000000000000", "1");
+  }
+
+  async getFiat() {
+    const result = await axios.get("https://helper.testnet.near.org/fiat");
+    return result.data;
+  }
+
+  async getAccountBalance() {
+    const account = await this.near.account(this.wallet.getAccountId());
+    const result = await account.getAccountBalance();
+    return this.parseYoctoToNears(result.total);
   }
 }

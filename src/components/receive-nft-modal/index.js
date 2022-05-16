@@ -12,6 +12,7 @@ import {
 } from "./styles";
 import { Button } from "../../components/button";
 import { NearService } from "../../services/NearService";
+import { EsccrowService } from "../../services/EsccrowService";
 
 export function ReceiveNFTModal({
   transactionId,
@@ -20,16 +21,17 @@ export function ReceiveNFTModal({
 }) {
   const [transaction, setTransaction] = useState({});
   const nearService = new NearService();
+  const esccrowService = new EsccrowService();
 
   const handleClickWithdraw = async () => {
-    await nearService.collectNFT(transaction);
+    await esccrowService.collectNFT(transaction);
     refreshTransactions();
     hideModal();
   };
 
   const getAction = () => {
     const { transaction_status } = transaction;
-    if (transaction_status === "Payed") {
+    if (transaction_status === "TokensAndNFTLocked") {
       return (
         <Button size="lg" color="accent" onClick={handleClickWithdraw}>
           Withdraw
@@ -51,7 +53,7 @@ export function ReceiveNFTModal({
   };
 
   useEffect(async () => {
-    const result = await nearService.getTransactionById(transactionId);
+    const result = await esccrowService.getTransactionById(transactionId);
     setTransaction(result);
   }, []);
 
@@ -62,16 +64,16 @@ export function ReceiveNFTModal({
       </CloseBtn>
       <ModalBody>
         <Title>
-          {transaction.transaction_status === "Payed"
+          {transaction.transaction_status === "TokensAndNFTLocked"
             ? "Congratulations!"
             : "Your transaction"}
         </Title>
         <SubTitle>
-          {transaction.transaction_status === "Payed"
+          {transaction.transaction_status === "TokensAndNFTLocked"
             ? "your NFT is available"
             : "is waiting for approvement"}
         </SubTitle>
-        {transaction.transaction_status === "Payed" ? (
+        {transaction.transaction_status === "TokensAndNFTLocked" ? (
           <CongratsImg />
         ) : (
           <AwaitImg />

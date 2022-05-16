@@ -11,6 +11,8 @@ export function NavbarView({
   themeMode,
   onChangeMode,
   walletUserText,
+  fiat,
+  accountBalance,
 }) {
   function getThemeButton() {
     if (themeMode === "dark") {
@@ -46,18 +48,11 @@ export function NavbarView({
         <Row alignItems="center">
           <Logo />
           <MenuNav>
-            <MenuItem to="home">Home</MenuItem>
-            <MenuItem
-              to="https://fintechlab.la/decentralized-escrow-service-what-is-it-and-how-does-it-work/"
-              foreign
-            >
-              About
+            <MenuItem to="#" foreign>
+              {fiat.near?.usd} USD
             </MenuItem>
-            <MenuItem to="https://t.me/fintechlablatam" foreign>
-              Community
-            </MenuItem>
-            <MenuItem to="https://discord.gg/3x8NJN2zNh" foreign>
-              Support
+            <MenuItem to="#" foreign>
+              {accountBalance} NEAR
             </MenuItem>
           </MenuNav>
           <Toolbar alignItems="center" gap="20px">
