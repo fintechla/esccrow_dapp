@@ -14,16 +14,28 @@ import {
 import { ReactComponent as FinchechLabLogo } from "../../assets/images/fintechlab-logo.svg";
 import { Stepbar } from "../stepbar";
 import { NearService } from "../../services/NearService";
+import { EsccrowService } from "../../services/EsccrowService";
+import { useState } from "react";
 
 export function StepFour({ onSubmitStepFour, data }) {
+  const [fee, setFee] = useState();
   const { amount } = data;
   const nearService = new NearService();
+  const esccrowService = new EsccrowService();
+
   const nearLogin = () => {
     if (!nearService.isSigned()) {
       localStorage.setItem("new-transaction", JSON.stringify(data));
       nearService.signIn();
     }
   };
+
+  const getFee = async () => {
+    const percentFee = await esccrowService.getPercentFee();
+    setFee((Number(percentFee) * amount) / 100);
+  };
+
+  getFee();
 
   return (
     <Column pt="28px" pb="28px">
@@ -45,12 +57,12 @@ export function StepFour({ onSubmitStepFour, data }) {
           <Value>{amount}</Value>
         </StepRow>
         <StepRow justifyContent={"space-between"}>
-          <Data>Network fee</Data>
-          <Value>0.1</Value>
+          <Data>Esccrow fee</Data>
+          <Value>{fee}</Value>
         </StepRow>
         <StepRow justifyContent={"space-between"}>
-          <Data>Esccrow fee</Data>
-          <Value>0.00</Value>
+          <Data>Storage fee</Data>
+          <Value>{"<" + "0.1"}</Value>
         </StepRow>
         <StepRow justifyContent={"space-between"}>
           <H5>Total</H5>

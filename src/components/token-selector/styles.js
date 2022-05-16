@@ -60,12 +60,20 @@ export const TokenTitle = styled.h5`
   font-size: 14px;
   font-weight: 500;
   color: var(--dark);
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 5px;
 `;
 
 export const TokenCaption = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--dark);
 `;
 
 export const NearSlug = styled.label`
@@ -88,3 +96,16 @@ export const CloseBtn = styled.button`
 `;
 
 export const CloseImg = styled(CloseSvg)``;
+
+export const SearchBlock = styled.div`
+  margin-bottom: 12px;
+`;
+
+export const InputSearch = styled.input`
+  width: 200px;
+  max-width: 100%;
+  border-radius: 5px;
+  padding: 5px 12px;
+  border: solid 1px #d2d2d2;
+  outline: 0;
+`;

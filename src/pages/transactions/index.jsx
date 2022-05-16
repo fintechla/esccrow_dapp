@@ -18,12 +18,14 @@ import { navigate } from "../../components/fleek-router";
 import { ReceiveTokensModal } from "../../components/receive-tokens-modal";
 import { ReceiveNFTModal } from "../../components/receive-nft-modal";
 import { hideModal, showModal } from "../../components/Modal/ModalContainer";
+import { EsccrowService } from "../../services/EsccrowService";
 
 export function Transactions({}) {
   const [transactions, setTransactions] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   const nearService = new NearService();
+  const esccrowService = new EsccrowService();
 
   const init = () => {
     getTransactions();
@@ -36,12 +38,12 @@ export function Transactions({}) {
 
   const getTransactions = async () => {
     const numberOfTransactions = Number(
-      await nearService.getNumberOfTransactionsByAccount()
+      await esccrowService.getNumberOfTransactionsByAccount()
     );
     const limit = numberOfTransactions + 1;
     const base = limit - 20;
 
-    const result = await nearService.getTransactionsByAccount(
+    const result = await esccrowService.getTransactionsByAccount(
       base >= 0 ? base : 0,
       limit
     );
@@ -109,7 +111,7 @@ export function Transactions({}) {
       action = (
         <RefreshButton
           onClick={async () => {
-            await nearService.collectTransaction(trx);
+            await esccrowService.collectTransaction(trx);
             getTransactions();
           }}
         >
@@ -185,7 +187,7 @@ export function Transactions({}) {
           <FilterBtn>Filter</FilterBtn>
         </SearchBlock>
         <TransactionsCount>
-          You are viewing 3 of 3 transaction
+          {/* You are viewing 3 of 3 transaction */}
         </TransactionsCount>
       </FilterBlock>
       <Table>

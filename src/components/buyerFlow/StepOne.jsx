@@ -2,13 +2,18 @@ import { Column } from "../column";
 import { Row } from "../row";
 import { InputText } from "../input";
 import { Select } from "../select";
-import { InputNumber } from "../input";
 import { Button } from "../button";
-import { PoweredBlock } from "./styles";
+import { PoweredBlock, TokenIdBtn } from "./styles";
 import { ReactComponent as FinchechLabLogo } from "../../assets/images/fintechlab-logo.svg";
 
-export function StepOne({ onSubmitStepOne, onChangeData, data, errors }) {
-  const { tokenId, contractAddress, amount, sellerWallet } = data;
+export function StepOne({
+  onSubmitStepOne,
+  onChangeData,
+  data,
+  errors,
+  onClickSelectTokenBtn,
+}) {
+  const { tokenId, sellerWallet } = data;
   const blockchain = "near";
 
   const getTokenIdInput = () => {
@@ -31,7 +36,7 @@ export function StepOne({ onSubmitStepOne, onChangeData, data, errors }) {
   return (
     <Column pt="28px" pb="28px">
       {getTokenIdInput()}
-      <Row>
+      {/* <Row>
         <InputText
           width="calc(100% - 160px)"
           placeholder="Contract address"
@@ -41,12 +46,12 @@ export function StepOne({ onSubmitStepOne, onChangeData, data, errors }) {
           onChange={(e) => onChangeData({ contractAddress: e.target.value })}
           error={errors.contractAddress}
         />
-      </Row>
+      </Row> */}
       <Row>
         <InputText
           width="calc(100% - 160px)"
           placeholder="Wallet address seller"
-          label="Of"
+          label="I will buy from"
           mt="20px"
           value={sellerWallet}
           onChange={(e) => onChangeData({ sellerWallet: e.target.value })}
@@ -64,6 +69,18 @@ export function StepOne({ onSubmitStepOne, onChangeData, data, errors }) {
         />
       </Row>
       <Row>
+        <InputText
+          width="calc(100% - 160px)"
+          placeholder="Select token ID"
+          label="Token ID"
+          mt="20px"
+          value={tokenId}
+          disabled={true}
+          onChange={(e) => onChangeData({ tokenId: e.target.value })}
+        />
+        <TokenIdBtn onClick={onClickSelectTokenBtn}>Select NFT</TokenIdBtn>
+      </Row>
+      {/* <Row>
         <InputNumber
           width="calc(100% - 160px)"
           placeholder="0.0"
@@ -83,7 +100,7 @@ export function StepOne({ onSubmitStepOne, onChangeData, data, errors }) {
             },
           ]}
         />
-      </Row>
+      </Row> */}
       <Column justifyContent="center" mt="30px" alignItems="center">
         <Button size="lg" color="accent" onClick={onSubmitStepOne}>
           Begin transaction

@@ -7,8 +7,14 @@ import { Tbl, Th, Tr, Td } from "./styles";
 import { ReactComponent as CloseSvg } from "../../assets/icons/close.svg";
 
 export function StepThree({ onSubmitStepThree, data, reset }) {
-  const { tokenId, contractAddress, amount, maxDatePayment, sellerWallet } =
-    data;
+  const {
+    tokenId,
+    contractAddress,
+    amount,
+    maxDatePayment,
+    sellerWallet,
+    NFTTitle,
+  } = data;
 
   return (
     <Column pt="28px" pb="28px">
@@ -27,6 +33,10 @@ export function StepThree({ onSubmitStepThree, data, reset }) {
               <b>Token ID:</b>
             </Th>
             <Td>{tokenId}</Td>
+          </Tr>
+          <Tr>
+            <Th>NFT Title:</Th>
+            <Td>{NFTTitle}</Td>
           </Tr>
           <Tr>
             <Th>Contract address:</Th>

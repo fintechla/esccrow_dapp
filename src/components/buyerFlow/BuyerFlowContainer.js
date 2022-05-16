@@ -8,6 +8,7 @@ import { NearService } from "../../services/NearService";
 // import { useLocation } from "react-router-dom";
 import { validate, validateStep2 } from "./validate";
 import { Query } from "../fleek-router/utils/Query";
+import { EsccrowService } from "../../services/EsccrowService";
 
 // function useQuery() {
 //   const { search } = useLocation();
@@ -28,6 +29,7 @@ export function BuyerFlowContainer(props) {
   // // const query = useQuery();
   const query = new Query();
   const nearService = new NearService();
+  const esccrowService = new EsccrowService();
 
   const validateTransactionStatus = async () => {
     const transactionHashes = query.params.transactionHashes;
@@ -50,6 +52,7 @@ export function BuyerFlowContainer(props) {
       amount: 0,
       sellerWallet: "",
       maxDatePayment: "",
+      NFTTitle: "",
     });
     showMenu();
     changeTitle(
@@ -83,7 +86,7 @@ export function BuyerFlowContainer(props) {
   };
 
   const handleSubmitStepFour = async () => {
-    nearService.createTransaction(data);
+    esccrowService.createTransaction(data);
   };
 
   const handleChangeData = (patch) => {
@@ -93,10 +96,17 @@ export function BuyerFlowContainer(props) {
   const handleClickSelectTokenBtn = async () => {
     const content = (
       <TokenSelector
-        contractAddress={data.contractAddress}
         sellerWallet={data.sellerWallet}
-        onSubmitTokenSelector={(tokenId) => {
-          handleChangeData({ tokenId });
+        onSubmitTokenSelector={({
+          token_id: tokenId,
+          contract_id: contractAddress,
+          metadata: { title: NFTTitle },
+        }) => {
+          handleChangeData({
+            tokenId,
+            contractAddress,
+            NFTTitle,
+          });
           hideModal();
         }}
       />

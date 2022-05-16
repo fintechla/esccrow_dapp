@@ -12,7 +12,7 @@ export function validateStep2({ tokenId }) {
   return true;
 }
 
-export async function validate({ contractAddress, sellerWallet }) {
+export async function validate({ contractAddress, sellerWallet, tokenId }) {
   const nearService = new NearService();
   const errors = {};
 
@@ -22,6 +22,10 @@ export async function validate({ contractAddress, sellerWallet }) {
 
   if (isEmpty(sellerWallet)) {
     errors.sellerWallet = "You must put a seller wallet";
+  }
+
+  if (isEmpty(tokenId)) {
+    errors.tokenId = "You must select a token";
   }
 
   if (!(await nearService.isAnAccount(sellerWallet))) {
