@@ -25,6 +25,7 @@ import { showModal } from "../../components/Modal/ModalContainer";
 import { ReceiveTokensModal } from "../../components/receive-tokens-modal";
 import { Query } from "../../components/fleek-router/utils/Query";
 import { ReactComponent as NearSVG } from "../../assets/icons/near.svg";
+import { EsccrowService } from "../../services/EsccrowService";
 
 export function Transaction(props) {
   const [transaction, setTransaction] = useState({});
@@ -33,13 +34,14 @@ export function Transaction(props) {
   const query = new Query();
   const transactionId = query.params.id;
   const nearService = new NearService();
+  const esccrowService = new EsccrowService();
 
   const init = () => {
     getTransaction();
   };
 
   const getTransaction = async () => {
-    const result = await nearService.getTransactionById(transactionId);
+    const result = await esccrowService.getTransactionById(transactionId);
     setTransaction(result);
   };
 
@@ -60,7 +62,7 @@ export function Transaction(props) {
   };
 
   const cancelTransaction = async () => {
-    await nearService.cancelTransaction(transaction);
+    await esccrowService.cancelTransaction(transaction);
     goBack();
   };
 
@@ -83,7 +85,7 @@ export function Transaction(props) {
         nearService.sendToken(transaction);
       };
     } else if (
-      transaction_status === "TokensAndNFTLocked" &&
+      transaction_status === "NftTransfered" &&
       nearService.wallet.getAccountId() === seller_id
     ) {
       buttonText = "Receive Tokens";
@@ -96,7 +98,7 @@ export function Transaction(props) {
     ) {
       buttonText = "Withdraw";
       action = async () => {
-        await nearService.collectTransaction(transaction);
+        await esccrowService.collectTransaction(transaction);
         goBack();
       };
     }
@@ -287,6 +289,7 @@ export function Transaction(props) {
             ) : transaction.transaction_status === "Completed" ||
               transaction.transaction_status === "Payed" ||
               transaction.transaction_status === "CancelledandPayed" ||
+              transaction.transaction_status === "NftTransfered" ||
               (transaction.transaction_status === "TokensAndNFTLocked" &&
                 transaction.seller_id !== nearService.wallet.getAccountId()) ? (
               ""

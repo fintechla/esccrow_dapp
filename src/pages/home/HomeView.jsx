@@ -9,6 +9,7 @@ import { Row } from "../../components/row";
 import { Bulb } from "../../components/icons";
 import { BuyerFlow } from "../../components/buyerFlow";
 import { SellerFlow } from "../../components/sellerFlow";
+import { EsccrowService } from "../../services/EsccrowService";
 
 let changeTitle = undefined;
 let showSubTitle = undefined;
@@ -19,6 +20,8 @@ export function HomeView(props) {
   );
   const [subTitleVisibility, setSubTitleVisibility] = useState(true);
   const [reminderVisibility, setReminderVisibility] = useState(true);
+  const [percentFee, setPercentFee] = useState("");
+  const esccrowService = new EsccrowService();
 
   changeTitle = (title) => {
     setTitle(title);
@@ -30,6 +33,13 @@ export function HomeView(props) {
     setSubTitleVisibility(true);
     setReminderVisibility(true);
   };
+
+  const getPercentFee = async () => {
+    const percentFee = await esccrowService.getPercentFee();
+    setPercentFee(Number(percentFee).toFixed(2) + " %");
+  };
+
+  getPercentFee();
 
   return (
     <Layout>
@@ -49,7 +59,7 @@ export function HomeView(props) {
           <H3>Reminder!</H3>
         </Row>
         <List>
-          <Item>Esccrow Fee is 1.00 %</Item>
+          <Item>Esccrow Fee is {percentFee}</Item>
           <Item>Minimun amount is 1 Near. Maximun amount is 100 Near.</Item>
           <Item>
             Estimated time of esccrow services is at least 30 minutes.

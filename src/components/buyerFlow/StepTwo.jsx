@@ -1,7 +1,8 @@
 import { Column } from "../column";
 import { Row } from "../row";
 import { TwoColumns, OneColumn, TokenIdBtn, CloseButton } from "./styles";
-import { InputText, InputDate, InputCheckbox } from "../input";
+import { InputText, InputDate, InputCheckbox, InputNumber } from "../input";
+import { Select } from "../select";
 import { Button } from "../button";
 import { PoweredBlock } from "./styles";
 import { ReactComponent as FinchechLabLogo } from "../../assets/images/fintechlab-logo.svg";
@@ -9,13 +10,7 @@ import { Link } from "../fleek-router/Link";
 import { Stepbar } from "../stepbar";
 import { ReactComponent as CloseSvg } from "../../assets/icons/close.svg";
 
-export function StepTwo({
-  onSubmitStepTwo,
-  onChangeData,
-  onClickSelectTokenBtn,
-  data,
-  reset,
-}) {
+export function StepTwo({ onSubmitStepTwo, onChangeData, data, reset }) {
   const { tokenId, contractAddress, amount, maxDatePayment, sellerWallet } =
     data;
 
@@ -41,8 +36,8 @@ export function StepTwo({
           <p>{sellerWallet}</p>
         </Column>
         <Column>
-          <label>Price:</label>
-          <p>{amount}</p>
+          <label>Token ID:</label>
+          <p>{tokenId}</p>
         </Column>
       </TwoColumns>
       <OneColumn>
@@ -52,6 +47,27 @@ export function StepTwo({
         </Column>
       </OneColumn>
       <Row>
+        <InputNumber
+          width="calc(100% - 160px)"
+          placeholder="0.0"
+          label="Price"
+          mt="12px"
+          value={amount}
+          onChange={(e) => onChangeData({ amount: e.target.value })}
+          min={0}
+        />
+        <Select
+          options={[
+            {
+              id: "1",
+              name: "NEAR",
+              type: "Near token",
+              icon: "near-white",
+            },
+          ]}
+        />
+      </Row>
+      {/* <Row>
         <InputText
           width="calc(100% - 160px)"
           placeholder="Select token ID"
@@ -62,13 +78,13 @@ export function StepTwo({
           onChange={(e) => onChangeData({ tokenId: e.target.value })}
         />
         <TokenIdBtn onClick={onClickSelectTokenBtn}>Select NFT</TokenIdBtn>
-      </Row>
+      </Row> */}
       <Row>
         <InputDate
           mt="20px"
           width="calc(100% - 160px)"
           placeholder=""
-          label="Payment period until"
+          label="My offer expires"
           value={maxDatePayment}
           onChange={(e) => onChangeData({ maxDatePayment: e.target.value })}
         />
