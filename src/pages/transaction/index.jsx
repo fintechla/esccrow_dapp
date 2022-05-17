@@ -85,14 +85,14 @@ export function Transaction(props) {
     return false;
   };
 
-  const validateDate = () => {
+  const validateDate = async () => {
     const transactionDate = new Date(transaction.transaction_time * 0.000001);
     const expirationDate = addMinutes(
       transactionDate,
       transaction.duration_in_minutes
     );
     const fechaActual = new Date(Date.now());
-    if (comparar(expirationDate, fechaActual)) {      
+    if (comparar(expirationDate, fechaActual)) {
       await esccrowService.cancelTransaction(transaction);
       alert("Your transaction expired");
       return false;
