@@ -24,7 +24,7 @@ export function BuyerFlowContainer(props) {
     contractAddress: "",
     amount: 0,
     sellerWallet: "",
-    maxDatePayment: "",
+    durationMinutes: "",
   });
   // // const query = useQuery();
   const query = new Query();
@@ -51,7 +51,7 @@ export function BuyerFlowContainer(props) {
       contractAddress: "",
       amount: 0,
       sellerWallet: "",
-      maxDatePayment: "",
+      durationMinutes: "",
       NFTTitle: "",
     });
     showMenu();

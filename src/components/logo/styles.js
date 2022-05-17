@@ -13,3 +13,7 @@ export const Span = styled.span`
 export const LogoImg = styled(LogoSVG)`
   margin-right: 15px;
 `;
+
+export const Div = styled.div`
+  cursor: pointer;
+`;
