@@ -71,6 +71,35 @@ export function Transaction(props) {
     showModal(content);
   };
 
+  const addMinutes = (date, minutes) => {
+    const milliseconstDate = date.getTime() + minutes * 60000;
+    return new Date(milliseconstDate);
+  };
+
+  const comparar = (fechaMenor, fechaMayor) => {
+    const fechaMenorMill = fechaMenor.getTime();
+    const fechaMayorMill = fechaMayor.getTime();
+    if (fechaMenorMill <= fechaMayorMill) {
+      return true;
+    }
+    return false;
+  };
+
+  const validateDate = () => {
+    const transactionDate = new Date(transaction.transaction_time * 0.000001);
+    const expirationDate = addMinutes(
+      transactionDate,
+      transaction.duration_in_minutes
+    );
+    const fechaActual = new Date(Date.now());
+    if (comparar(expirationDate, fechaActual)) {      
+      await esccrowService.cancelTransaction(transaction);
+      alert("Your transaction expired");
+      return false;
+    }
+    return true;
+  };
+
   const getActionButton = () => {
     const { transaction_status, seller_id } = transaction;
     let buttonText = "Go back";
@@ -82,7 +111,9 @@ export function Transaction(props) {
     ) {
       buttonText = "Send your NFT";
       action = () => {
-        nearService.sendToken(transaction);
+        if (validateDate()) {
+          nearService.sendToken(transaction);
+        }
       };
     } else if (
       transaction_status === "NftTransfered" &&
@@ -112,7 +143,7 @@ export function Transaction(props) {
   const getFirstTableHeaders = () => {
     let headers = ["Token ID", "Digital asset", "Price"];
     if (transaction.seller_id === nearService.wallet.getAccountId()) {
-      headers = [...headers, "Fee", "You receive"];
+      headers = [...headers, "Fee", "Royalties", "You receive"];
     }
     return headers;
   };
@@ -135,13 +166,25 @@ export function Transaction(props) {
     ];
     if (transaction.seller_id === nearService.wallet.getAccountId()) {
       const fee = price ? price * 0.01 : "";
-      const neto = price ? price - fee : "";
+      let royalties = 0;
+      for (const key in transaction.royalties) {
+        royalties += (transaction.royalties[key] / 10000) * price;
+      }
+      const neto = price ? (price - fee - royalties).toFixed(2) : "";
       data = [
         ...data,
         {
           content: (
             <div>
               {fee}
+              <NearSVG />
+            </div>
+          ),
+        },
+        {
+          content: (
+            <div>
+              {royalties}
               <NearSVG />
             </div>
           ),

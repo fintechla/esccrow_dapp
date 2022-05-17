@@ -11,7 +11,7 @@ import { Stepbar } from "../stepbar";
 import { ReactComponent as CloseSvg } from "../../assets/icons/close.svg";
 
 export function StepTwo({ onSubmitStepTwo, onChangeData, data, reset }) {
-  const { tokenId, contractAddress, amount, maxDatePayment, sellerWallet } =
+  const { tokenId, contractAddress, amount, durationMinutes, sellerWallet } =
     data;
 
   const conditionsText = (
@@ -80,14 +80,26 @@ export function StepTwo({ onSubmitStepTwo, onChangeData, data, reset }) {
         <TokenIdBtn onClick={onClickSelectTokenBtn}>Select NFT</TokenIdBtn>
       </Row> */}
       <Row>
-        <InputDate
+        <div id="select">
+          <label id="lbl">My offer expires</label>
+          <select
+            onChange={(e) => onChangeData({ durationMinutes: e.target.value })}
+          >
+            <option value="15">15 minutes</option>
+            <option value="30">30 minutes</option>
+            <option value="60">60 minutes</option>
+            <option value="90">90 minutes</option>
+          </select>
+        </div>
+
+        {/* <InputDate
           mt="20px"
           width="calc(100% - 160px)"
           placeholder=""
           label="My offer expires"
           value={maxDatePayment}
           onChange={(e) => onChangeData({ maxDatePayment: e.target.value })}
-        />
+        /> */}
       </Row>
       <Row>
         <InputCheckbox mt="12px" label={conditionsText} />

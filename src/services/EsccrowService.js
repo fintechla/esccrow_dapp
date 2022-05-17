@@ -45,13 +45,20 @@ export class EsccrowService {
     return result / 10;
   }
 
-  async createTransaction({ sellerWallet, amount, tokenId, contractAddress }) {
+  async createTransaction({
+    sellerWallet,
+    amount,
+    tokenId,
+    contractAddress,
+    durationMinutes,
+  }) {
     const params = {
       seller_id: sellerWallet,
       buyer_id: this.nearService.wallet.getAccountId(),
       price: Number(amount * 1),
       nft_id: tokenId,
       nft_contract_id: contractAddress,
+      duration_in_minutes: Number(durationMinutes),
     };
 
     const deposit = String(amount * 1 + 0.1);
