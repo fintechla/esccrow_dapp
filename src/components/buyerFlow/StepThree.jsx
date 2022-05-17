@@ -11,7 +11,7 @@ export function StepThree({ onSubmitStepThree, data, reset }) {
     tokenId,
     contractAddress,
     amount,
-    maxDatePayment,
+    durationMinutes,
     sellerWallet,
     NFTTitle,
   } = data;
@@ -51,8 +51,8 @@ export function StepThree({ onSubmitStepThree, data, reset }) {
             <Td>{sellerWallet}</Td>
           </Tr>
           <Tr>
-            <Th>Payment period until:</Th>
-            <Td>{maxDatePayment}</Td>
+            <Th>My offer expires:</Th>
+            <Td>{durationMinutes} minutes</Td>
           </Tr>
           <Tr>
             <Th>Price:</Th>

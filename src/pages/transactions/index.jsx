@@ -138,7 +138,9 @@ export function Transactions({}) {
     });
 
     return orderTransactions.map((trx) => {
-      const { transaction_id, nft_id, transaction_date, buyer_id, price } = trx;
+      const { transaction_id, nft_id, buyer_id, price, transaction_time } = trx;
+
+      const transactionDate = new Date(transaction_time * 0.000001);
 
       const role =
         buyer_id === nearService.wallet.getAccountId() ? "Buyer" : "Seller";
@@ -156,7 +158,7 @@ export function Transactions({}) {
             {transaction_id}
           </td>
           <td>{nft_id}</td>
-          <td>{transaction_date}</td>
+          <td>{transactionDate.toLocaleString()}</td>
           <td>{role}</td>
           <td>{amount}</td>
           <td>{"NEAR"}</td>
