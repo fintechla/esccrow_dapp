@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Layout } from "../layout";
 import { H1, H3 } from "../../components/text";
-import { SubTitle, Reminder, List, Item } from "./styles";
+import { SubTitle, Reminder, List, Item, Disclaimer } from "./styles";
 import { TabNavigation } from "../../components/tab-navigation";
 import { TabNavigationItem } from "../../components/tab-navigation-item";
 import { Row } from "../../components/row";
@@ -20,13 +20,15 @@ export function HomeView(props) {
   );
   const [subTitleVisibility, setSubTitleVisibility] = useState(true);
   const [reminderVisibility, setReminderVisibility] = useState(true);
+  const [disclaimer, setDisclaimer] = useState([]);
   const [percentFee, setPercentFee] = useState("");
   const esccrowService = new EsccrowService();
 
-  changeTitle = (title) => {
+  changeTitle = (title, disclaimer = undefined) => {
     setTitle(title);
     setSubTitleVisibility(false);
     setReminderVisibility(false);
+    setDisclaimer(disclaimer ?? []);
   };
 
   showSubTitle = () => {
@@ -37,6 +39,10 @@ export function HomeView(props) {
   const getPercentFee = async () => {
     const percentFee = await esccrowService.getPercentFee();
     setPercentFee(Number(percentFee).toFixed(2) + " %");
+  };
+
+  const getDisclaimerItems = () => {
+    return disclaimer.map((elm) => <Item>{elm}</Item>);
   };
 
   getPercentFee();
@@ -61,11 +67,12 @@ export function HomeView(props) {
         <List>
           <Item>Esccrow Fee is {percentFee}</Item>
           <Item>Minimun amount is 1 Near. Maximun amount is 100 Near.</Item>
-          <Item>
-            Estimated time of esccrow services is at least 30 minutes.
-          </Item>
+          <Item>Estimated time of esccrow services is at least 90 minutes</Item>
         </List>
       </Reminder>
+      <Disclaimer>
+        <List>{getDisclaimerItems()}</List>
+      </Disclaimer>
     </Layout>
   );
 }

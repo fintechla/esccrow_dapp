@@ -24,7 +24,7 @@ export function BuyerFlowContainer(props) {
     contractAddress: "",
     amount: 0,
     sellerWallet: "",
-    durationMinutes: "",
+    durationMinutes: "15",
   });
   // // const query = useQuery();
   const query = new Query();
@@ -51,7 +51,7 @@ export function BuyerFlowContainer(props) {
       contractAddress: "",
       amount: 0,
       sellerWallet: "",
-      durationMinutes: "",
+      durationMinutes: "30",
       NFTTitle: "",
     });
     showMenu();
@@ -81,7 +81,9 @@ export function BuyerFlowContainer(props) {
   };
 
   const handleSubmitStepThree = () => {
-    changeTitle("Approve payment");
+    changeTitle("Approve payment", [
+      "(*) the storage fee is closer to 0.01. The charge of 0.1 is provisional and the automatic refund will be made.",
+    ]);
     setStep(4);
   };
 
