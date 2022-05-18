@@ -5,6 +5,7 @@ import { ReactComponent as FinchechLabLogo } from "../../assets/images/fintechla
 import { Stepbar } from "../stepbar";
 import { Tbl, Th, Tr, Td } from "./styles";
 import { ReactComponent as CloseSvg } from "../../assets/icons/close.svg";
+import { ReactComponent as NearSVG } from "../../assets/icons/near.svg";
 
 export function StepThree({ onSubmitStepThree, data, reset }) {
   const {
@@ -56,7 +57,11 @@ export function StepThree({ onSubmitStepThree, data, reset }) {
           </Tr>
           <Tr>
             <Th>Price:</Th>
-            <Td>{amount}</Td>
+            <Td>
+              <div style={{ display: "inline-flex", alignItems: "center" }}>
+                {amount} <NearSVG width={16} />
+              </div>
+            </Td>
           </Tr>
         </tbody>
       </Tbl>

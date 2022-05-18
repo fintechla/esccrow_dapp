@@ -15,4 +15,6 @@ export const STLink = styled(Link)`
 export const ListItem = styled.li`
   padding: 0px 40px;
   cursor: pointer;
+  color: var(--dark);
+  font-size: 14px;
 `;
