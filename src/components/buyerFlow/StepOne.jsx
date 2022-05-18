@@ -50,8 +50,8 @@ export function StepOne({
       <Row>
         <InputText
           width="calc(100% - 160px)"
-          placeholder="Wallet address seller"
-          label="I will buy from"
+          placeholder="example.near"
+          label="Wallet address seller"
           mt="20px"
           value={sellerWallet}
           onChange={(e) => onChangeData({ sellerWallet: e.target.value })}
@@ -71,14 +71,14 @@ export function StepOne({
       <Row>
         <InputText
           width="calc(100% - 160px)"
-          placeholder="Select token ID"
-          label="Token ID"
+          placeholder="Token ID"
+          label="Select NFT"
           mt="20px"
           value={tokenId}
           disabled={true}
           onChange={(e) => onChangeData({ tokenId: e.target.value })}
         />
-        <TokenIdBtn onClick={onClickSelectTokenBtn}>Select NFT</TokenIdBtn>
+        <TokenIdBtn onClick={onClickSelectTokenBtn}>Search NFT</TokenIdBtn>
       </Row>
       {/* <Row>
         <InputNumber

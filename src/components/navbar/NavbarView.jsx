@@ -48,10 +48,16 @@ export function NavbarView({
         <Row alignItems="center">
           <Logo />
           <MenuNav>
-            <MenuItem to="#" foreign>
+            <MenuItem>
+              NEAR PRICE:&nbsp;
               {fiat.near?.usd} USD
             </MenuItem>
-            <MenuItem to="#" foreign>
+            <MenuItem>
+              USN PRICE:&nbsp;
+              {"1.00"} USD
+            </MenuItem>
+            <MenuItem>
+              ACCOUNT BALANCE:&nbsp;
               {accountBalance} NEAR
             </MenuItem>
           </MenuNav>

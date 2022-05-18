@@ -46,3 +46,8 @@ export const PoweredBlock = styled(Row)`
     color: var(--black);
   }
 `;
+
+export const Disclaimer = styled.div`
+  text-align: center;
+  margin-top: 20px;
+`;
