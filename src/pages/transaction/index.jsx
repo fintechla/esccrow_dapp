@@ -165,7 +165,7 @@ export function Transaction(props) {
       },
     ];
     if (transaction.seller_id === nearService.wallet.getAccountId()) {
-      const fee = price ? price * 0.01 : "";
+      const fee = price ? price * (transaction.fee / 1000) : "";
       let royalties = 0;
       for (const key in transaction.royalties) {
         royalties += (transaction.royalties[key] / 10000) * (price - fee);
