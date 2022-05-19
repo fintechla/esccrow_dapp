@@ -9,7 +9,7 @@ export const PoweredBlock = styled(Row)`
     margin-left: 5px;
   }
   span {
-    font-size: 12px;
+    font-size: 0.8rem;
     color: var(--black);
   }
 `;
@@ -23,13 +23,13 @@ export const OneColumn = styled(Row)`
     border-radius: 6px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
     label {
-      font-size: 14px;
+      font-size: 0.9rem;
       font-weight: 400;
       color: var(--dark);
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
     p {
-      font-size: 18px;
+      font-size: 1rem;
       font-weight: 600;
       color: var(--dark);
     }
@@ -47,13 +47,13 @@ export const TwoColumns = styled(Row)`
     border-radius: 6px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
     label {
-      font-size: 14px;
+      font-size: 0.9rem;
       font-weight: 400;
       color: var(--dark);
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
     p {
-      font-size: 18px;
+      font-size: 1rem;
       font-weight: 600;
       color: var(--dark);
     }
@@ -67,7 +67,7 @@ export const Tbl = styled.table`
 `;
 
 export const Th = styled.th`
-  font-size: 18px;
+  font-size: 1rem;
   color: var(--dark);
   font-weight: 400;
   text-align: left;
@@ -91,7 +91,7 @@ export const Td = styled.td`
   padding-top: 9px;
   b {
     font-weight: 600;
-    font-size: 18px;
+    font-size: 1rem;
   }
 `;
 
@@ -111,13 +111,13 @@ export const PriceBlock = styled.div`
 export const H4 = styled.h4`
   color: var(--dark);
   font-weight: 600;
-  font-size: 21px;
+  font-size: 1.8rem;
 `;
 
 export const H5 = styled.h5`
   color: var(--dark);
   font-weight: 600;
-  font-size: 18px;
+  font-size: 1rem;
 `;
 
 export const BtnWallet = styled.button`
@@ -132,13 +132,13 @@ export const BtnWallet = styled.button`
 
 export const P = styled.p`
   color: var(--text-secondary);
-  font-size: 18px;
+  font-size: 1rem;
   margin-top: 20px;
   font-weight: 300;
 `;
 
 export const Data = styled.p`
-  font-size: 18px;
+  font-size: 1rem;
   color: var(--dark);
   font-weight: 400;
 `;
@@ -152,7 +152,7 @@ export const StepRow = styled(Row)`
 `;
 
 export const StepFiveP = styled.p`
-  font-size: 16px;
+  font-size: 0.9rem;
   color: var(--dark);
   font-weight: 400;
   margin-top: 13px;
@@ -190,7 +190,7 @@ export const SocialButton = styled.button`
   background-color: transparent;
   cursor: pointer;
   label {
-    font-size: 10px;
+    font-size: 0.7rem;
     margin-top: 5px;
   }
 `;

@@ -34,7 +34,7 @@ export function StepOne({
   };
 
   return (
-    <Column pt="28px" pb="28px">
+    <Column pt="12px" pb="15px">
       {getTokenIdInput()}
       {/* <Row>
         <InputText

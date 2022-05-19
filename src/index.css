@@ -7,6 +7,10 @@
   font-family: "SuiseIntl";
 }
 
+html {
+  font-size: 16px;
+}
+
 input[type=number] { -moz-appearance:textfield; }
 
 select {
@@ -19,7 +23,7 @@ select {
 }
 
 #lbl {
-  font-size: 22px;
+  font-size: 1.2rem;
   font-weight: 600;
   text-indent: 8px;
   color: var(--dark);

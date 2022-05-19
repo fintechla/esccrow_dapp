@@ -4,7 +4,7 @@ import { Table } from "../../components/table";
 import { CopyButton as CopyButtonComponent } from "../../components/copy-button";
 
 export const Title = styled.h3`
-  font-size: 28px;
+  font-size: 1.2rem;
   font-weight: 600;
   color: var(--dark);
 `;
@@ -26,7 +26,7 @@ export const Data = styled(DataComponent)`
   justify-content: space-between;
   width: 100%;
   span {
-    font-size: 18px;
+    font-size: 1rem;
     color: var(--dark);
   }
   &:nth-child(1) {
@@ -38,14 +38,14 @@ export const Table2 = styled(Table)`
   margin-top: 30px;
   width: 100%;
   td {
-    font-size: 24px;
+    font-size: 1.2rem;
     font-weight: 400;
     color: var(--dark);
     font-style: normal;
     position: relative;
   }
   td b {
-    font-size: 18px;
+    font-size: 1rem;
     font-weight: 600;
     color: var(--dark);
   }
@@ -73,11 +73,11 @@ export const Table1 = styled(Table)`
     text-align: left;
   }
   th {
-    font-size: 21px;
+    font-size: 1.1rem;
     font-weight: 600;
   }
   td {
-    font-size: 26px;
+    font-size: 1.4rem;
     font-weight: 400;
   }
   td div {
@@ -99,7 +99,7 @@ export const CardHeader = styled.div`
 `;
 
 export const CardTitle = styled.h4`
-  font-size: 24px;
+  font-size: 1.3rem;
   font-weight: 600;
   color: var(--dark);
 `;
@@ -110,15 +110,15 @@ export const CardBody = styled.div`
 
 export const MaxTime = styled.p`
   color: var(--dark);
-  font-size: 24px;
+  font-size: 1.3rem;
   font-weight: 400;
 `;
 
 export const Confirm = styled.p`
   color: var(--dark);
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
-  margin-top: 18px;
+  margin-top: 16px;
 `;
 
 export const ButtonBlock = styled.div`

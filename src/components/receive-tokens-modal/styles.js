@@ -16,14 +16,14 @@ export const CloseBtn = styled.button`
 export const CloseImg = styled(CloseSvg)``;
 
 export const Title = styled.h3`
-  font-size: 31px;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--dark);
   text-align: center;
 `;
 
 export const SubTitle = styled.h4`
-  font-size: 22px;
+  font-size: 1.3rem;
   font-weight: 400;
   color: var(--dark);
   text-align: center;

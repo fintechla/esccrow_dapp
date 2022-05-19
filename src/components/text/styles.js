@@ -9,19 +9,19 @@ function align(align) {
 }
 
 export const H1 = styled.h1`
-  font-size: 41px;
+  font-size: 1.8rem;
   color: var(--dark);
   ${(props) => (props.align ? align(props.align) : "")}
 `;
 
 export const H3 = styled.h3`
-  font-size: 20px;
+  font-size: 1.2rem;
   font-weight: 500;
   ${(props) => (props.align ? align(props.align) : "")}
 `;
 
 export const Text = styled.p`
-  font-size: 26px;
+  font-size: 1.4rem;
   ${(props) => (props.align ? align(props.align) : "")}
   color: var(--text-secondary);
 `;
