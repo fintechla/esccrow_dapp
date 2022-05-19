@@ -13,7 +13,7 @@ export const Modal = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  width: 882px;
+  width: 692px;
   max-width: 100%;
   background-color: var(--white);
   border-radius: 10px;

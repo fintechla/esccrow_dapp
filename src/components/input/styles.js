@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 export const Label = styled.label`
-  font-size: 22px;
+  font-size: 1.2rem;
   font-weight: 600;
   text-indent: 8px;
   color: var(--dark);
 `;
 export const Input = styled.input`
   background-color: transparent;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 300;
   padding: 8px;
   border: 0;
@@ -27,7 +27,7 @@ export const Input = styled.input`
   }
 `;
 export const CheckboxLabel = styled.label`
-  font-size: 14px;
+  font-size: 0.9rem;
   font-weight: 400;
   color: var(--dark);
   display: flex;

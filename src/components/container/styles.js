@@ -4,7 +4,7 @@ import Breakpoints from "../breakpoints";
 function size(size) {
   let sizeStyles = "";
   if (size === "md") {
-    sizeStyles = `max-width: 864px!important;`;
+    sizeStyles = `max-width: 670px!important;`;
   }
   return sizeStyles;
 }

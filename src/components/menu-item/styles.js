@@ -9,12 +9,12 @@ export const STLink = styled(Link)`
   text-decoration: none;
   font-weight: 400;
   color: var(--dark);
-  font-size: 17px;
+  font-size: 1rem;
 `;
 
 export const ListItem = styled.li`
   padding: 0px 40px;
   cursor: pointer;
   color: var(--dark);
-  font-size: 14px;
+  font-size: 0.9rem;
 `;

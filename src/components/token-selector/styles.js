@@ -9,13 +9,13 @@ export const NearIcon = styled(Icons.Near)`
 `;
 
 export const Title = styled.h2`
-  font-size: 28px;
+  font-size: 1rem;
   font-weight: 500;
   color: var(--dark);
 `;
 
 export const SubTitle = styled.h3`
-  font-size: 20px;
+  font-size: 1.2rem;
   font-weight: 400;
   color: var(--dark);
   margin-bottom: 12px;
@@ -57,11 +57,11 @@ export const TokenImg = styled.img`
 `;
 
 export const TokenTitle = styled.h5`
-  font-size: 14px;
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--dark);
   text-align: center;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 500;
   margin-top: 5px;
 `;
@@ -71,13 +71,13 @@ export const TokenCaption = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 5px;
-  font-size: 14px;
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--dark);
 `;
 
 export const NearSlug = styled.label`
-  font-size: 10px;
+  font-size: 0.7rem;
   color: var(--dark);
   background-color: var(--info);
   border-radius: 10px;

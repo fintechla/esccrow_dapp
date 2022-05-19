@@ -23,7 +23,7 @@ export const Title = styled.h3`
 `;
 
 export const SubTitle = styled.h4`
-  font-size: 22px;
+  font-size: 1.3rem;
   font-weight: 400;
   color: var(--dark);
   text-align: center;

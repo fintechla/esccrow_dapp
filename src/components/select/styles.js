@@ -11,12 +11,12 @@ export const Select = styled(Row)`
   max-width: 110px;
   min-width: 110px;
   span {
-    font-size: 13px;
+    font-size: 0.85rem;
     line-height: 1em;
     color: var(--dark);
   }
   span:nth-child(2) {
-    font-size: 10px;
+    font-size: 0.7rem;
     opacity: 0.8;
   }
   .text {

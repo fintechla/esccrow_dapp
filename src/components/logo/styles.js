@@ -5,7 +5,7 @@ export const Span = styled.span`
   font-family: LTWave;
   color: var(--dark);
   letter-spacing: -1px;
-  font-size: 40px;
+  font-size: 2.5rem;
   line-height: 40px;
   margin-top: -6px;
 `;

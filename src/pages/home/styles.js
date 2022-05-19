@@ -31,7 +31,7 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
-  font-size: 16px;
+  font-size: 0.95rem;
   color: var(--dark);
 `;
 
@@ -42,7 +42,7 @@ export const PoweredBlock = styled(Row)`
     margin-left: 5px;
   }
   span {
-    font-size: 12px;
+    font-size: 0.8rem;
     color: var(--black);
   }
 `;

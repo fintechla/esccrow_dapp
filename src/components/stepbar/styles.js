@@ -17,7 +17,7 @@ export const Item = styled.li`
   align-items: center;
   color: var(--white);
   position: relative;
-  font-size: 16px;
+  font-size: 0.9rem;
   ::after {
     content: "";
     display: block;

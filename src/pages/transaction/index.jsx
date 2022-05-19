@@ -168,7 +168,7 @@ export function Transaction(props) {
       const fee = price ? price * 0.01 : "";
       let royalties = 0;
       for (const key in transaction.royalties) {
-        royalties += (transaction.royalties[key] / 10000) * price;
+        royalties += (transaction.royalties[key] / 10000) * (price - fee);
       }
       const neto = price ? (price - fee - royalties).toFixed(2) : "";
       data = [
@@ -184,7 +184,7 @@ export function Transaction(props) {
         {
           content: (
             <div>
-              {royalties}
+              {royalties.toFixed(2)}
               <NearSVG />
             </div>
           ),
