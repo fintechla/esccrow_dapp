@@ -11,5 +11,5 @@ export const BetaBlock = styled.div`
   background-color: var(--sky-blue);
   padding: 5px;
   box-shadow: #e5e7e8 5px 5px 5px;
-  font-size: 14px;
+  font-size: 0.9rem;
 `;

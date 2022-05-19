@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link as RRLink } from "react-router-dom";
 
 export const Title = styled.h1`
-  font-size: 41px;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--dark);
 `;
@@ -15,7 +15,7 @@ export const StatusFilter = styled.ul`
 `;
 
 export const StatusFilterItm = styled.li`
-  font-size: 21px;
+  font-size: 1.1rem;
   font-weight: 600;
   padding: 16px 20px;
   color: var(--dark);
@@ -68,13 +68,13 @@ export const Table = styled.table`
     background-color: var(--purple-down);
   }
   th {
-    font-size: 21px;
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--dark);
     padding: 25px 29px;
   }
   td {
-    font-size: 18px;
+    font-size: 1.1rem;
     color: var(--dark);
     text-align: center;
     padding: 20px 12px 22px;
@@ -90,7 +90,7 @@ export const RefreshButton = styled.button`
   cursor: pointer;
   background-color: var(--purple-down);
   border: 0;
-  font-size: 18px;
+  font-size: 1.1rem;
   font-weight: 400;
   color: var(--dark);
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
