@@ -33,7 +33,7 @@ function TokenItem({ data, onClickToken, selected }) {
         {data.token_id}
         <NearSlug>
           <NearIcon />
-          Near
+          NEAR
         </NearSlug>
       </TokenCaption>
       <TokenImg

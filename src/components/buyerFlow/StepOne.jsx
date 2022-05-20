@@ -62,13 +62,13 @@ export function StepOne({
           options={[
             {
               id: "1",
-              name: "Near",
+              name: "NEAR",
               type: "Mainnet",
               icon: <Icons.Near2 className="icon" />,
             },
             {
               id: "2",
-              name: "Terra",
+              name: "TERRA",
               type: "Mainnet",
               icon: <Icons.Terra className="icon" />,
             },
