@@ -49,14 +49,14 @@ export function NavbarView({
           <Logo />
           <MenuNav>
             <MenuItem>
-              NEAR PRICE:&nbsp; <label>${fiat.near?.usd} USD</label>
+              Near Price:&nbsp; <label>${fiat.near?.usd} USD</label>
             </MenuItem>
             <MenuItem>
-              USN PRICE:&nbsp;
+              USN Price:&nbsp;
               <label>{"$1.00"} USD</label>
             </MenuItem>
             <MenuItem>
-              ACCOUNT BALANCE:&nbsp; <label>{accountBalance} NEAR</label>
+              Account Balance:&nbsp; <label>{accountBalance} NEAR</label>
             </MenuItem>
           </MenuNav>
           <Toolbar alignItems="center" gap="20px">
