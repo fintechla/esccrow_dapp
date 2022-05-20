@@ -7,4 +7,27 @@
   font-family: "SuiseIntl";
 }
 
+html {
+  font-size: 16px;
+}
+
 input[type=number] { -moz-appearance:textfield; }
+
+select {
+  width: 250px;
+  max-width: 100%;
+  padding: 10px;
+  background-color: #aec3ff;
+  border: 0;
+  border-radius: 5px;
+}
+
+#lbl {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-indent: 8px;
+  color: var(--dark);
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 5px;
+}

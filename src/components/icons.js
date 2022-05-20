@@ -7,6 +7,7 @@ export { ReactComponent as Near } from "../assets/icons/20px/near.svg";
 export { ReactComponent as Bulb } from "../assets/icons/24px/bulb.svg";
 export { ReactComponent as ChevronDown } from "../assets/icons/20px/chevron-down.svg";
 export { ReactComponent as Near2 } from "../assets/icons/near.svg";
+export { ReactComponent as Terra } from "../assets/icons/24px/terra.svg";
 
 // export { Wallet, Moon, Near, NearWhite };
 export const test = NearWhite;

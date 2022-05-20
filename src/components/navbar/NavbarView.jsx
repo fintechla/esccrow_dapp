@@ -11,6 +11,8 @@ export function NavbarView({
   themeMode,
   onChangeMode,
   walletUserText,
+  fiat,
+  accountBalance,
 }) {
   function getThemeButton() {
     if (themeMode === "dark") {
@@ -46,15 +48,21 @@ export function NavbarView({
         <Row alignItems="center">
           <Logo />
           <MenuNav>
-            <MenuItem to="/">Home</MenuItem>
-            <MenuItem to="/about">About</MenuItem>
-            <MenuItem to="/community">Community</MenuItem>
-            <MenuItem to="/support">Support</MenuItem>
+            <MenuItem>
+              NEAR Price:&nbsp; <label>${fiat.near?.usd} USD</label>
+            </MenuItem>
+            <MenuItem>
+              USN Price:&nbsp;
+              <label>{"$1.00"} USD</label>
+            </MenuItem>
+            <MenuItem>
+              Account Balance:&nbsp; <label>{accountBalance} NEAR</label>
+            </MenuItem>
           </MenuNav>
           <Toolbar alignItems="center" gap="20px">
             <Button color="info" href="#">
               <Icons.Near />
-              <span>Near</span>
+              <span>NEAR</span>
             </Button>
             <Button color="primary" onClick={onClickLogin}>
               <Icons.Wallet />

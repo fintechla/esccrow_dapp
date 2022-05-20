@@ -33,10 +33,10 @@ function getButtonColorStyles(color) {
   return styles;
 }
 
-function getButtonSizeStyles(size) {
+function getButtonSizeStyles(size, color) {
   const sizeStyle = size ?? "md";
   const fontSize = Font.sizes[sizeStyle];
-  const fontWeight = weights[sizeStyle];
+  const fontWeight = color === "secondary" ? 400 : weights[sizeStyle];
   const padding = paddings[sizeStyle];
   const styles = `
       font-size: ${fontSize};
@@ -57,7 +57,7 @@ export const Button = styled.a`
   align-items: center;
   cursor: pointer;
   ${(props) => getButtonColorStyles(props.color)}
-  ${(props) => getButtonSizeStyles(props.size)}
+  ${(props) => getButtonSizeStyles(props.size, props.color)}
   & > svg {
     margin-right: 5px;
     ${(props) => (props.iconMR ? "margin-right: 0px!important;" : "")}

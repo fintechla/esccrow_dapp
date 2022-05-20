@@ -20,6 +20,7 @@ function gap(gap) {
   if (gap) {
     gapStyles = `gap: ${gap};`;
   }
+  console.log(gapStyles);
   return gapStyles;
 }
 
@@ -28,8 +29,8 @@ export const Row = styled.div`
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   flex-direction: row;
-  ${(props) => (props.alignItems ? alignItems(props.alignItems) : "")}
   ${(props) => (props.alignItems ? gap(props.gap) : "")}
+  ${(props) => (props.alignItems ? alignItems(props.alignItems) : "")}  
   ${(props) => (props.pt ? "padding-top: " + props.pt + ";" : "")}
   ${(props) => (props.pb ? "padding-bottom: " + props.pb + ";" : "")}
   ${(props) => (props.mt ? "margin-top: " + props.mt + ";" : "")}

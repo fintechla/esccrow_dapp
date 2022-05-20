@@ -8,11 +8,21 @@ export function InputTextView({
   placeholder,
   mt,
   width,
+  onChange,
+  disabled,
+  error,
 }) {
+  console.log(error);
   return (
     <Column mt={mt} className={className} width={width}>
       <Label>{label}</Label>
-      <Input placeholder={placeholder} value={value} />
+      <Input
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        disabled={disabled ? true : false}
+        error={error}
+      />
     </Column>
   );
 }

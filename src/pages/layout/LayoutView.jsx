@@ -3,12 +3,13 @@ import { Header } from "../../components/header";
 import { Navbar } from "../../components/navbar";
 import { Footer } from "../../components/footer";
 import { Container } from "../../components/container";
-import { Main } from "./styles";
+import { Main, BetaBlock } from "./styles";
 import { UtilService } from "../../services/UtilService";
 
-export function LayoutView({ children }) {
+export function LayoutView({ children, container }) {
   const utilService = new UtilService();
   const [themeMode, setThemeMode] = useState(utilService.getThemeMode());
+  const size = container === "full" ? undefined : "md";
 
   useEffect(() => {
     utilService.listenChangeThemeMode((mode) => {
@@ -21,8 +22,11 @@ export function LayoutView({ children }) {
       <Header>
         <Navbar></Navbar>
       </Header>
+      <BetaBlock>
+        This is a public beta version - Use at your own risk - Unaudited code
+      </BetaBlock>
       <Main>
-        <Container size="md">{children}</Container>
+        <Container size={size}>{children}</Container>
       </Main>
       <Footer></Footer>
     </div>
