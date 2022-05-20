@@ -66,8 +66,9 @@ export function HomeView(props) {
         </Row>
         <List>
           <Item>Esccrow Fee is {percentFee}</Item>
-          <Item>Minimun amount is 1 Near. Maximun amount is 100 Near.</Item>
-          <Item>Estimated time of esccrow services is at least 90 minutes</Item>
+          <Item>
+            Estimated max time of esccrow services is at least 90 minutes
+          </Item>
         </List>
       </Reminder>
       <Disclaimer>

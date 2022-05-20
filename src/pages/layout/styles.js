@@ -10,6 +10,6 @@ export const BetaBlock = styled.div`
   color: var(--dark);
   background-color: var(--sky-blue);
   padding: 5px;
-  box-shadow: #e5e7e8 5px 5px 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 5px 5px 5px;
   font-size: 0.9rem;
 `;
