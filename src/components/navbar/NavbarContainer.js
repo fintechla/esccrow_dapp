@@ -29,7 +29,6 @@ export function NavbarContainer({ className, chilchen }) {
 
   const getAccountBalance = async () => {
     const result = await nearService.getAccountBalance();
-    console.log(result);
     setAccountBalance(result);
   };
 

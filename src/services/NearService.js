@@ -132,7 +132,6 @@ export class NearService {
 
   async getFiat() {
     const result = await axios.get("https://helper.testnet.near.org/fiat");
-    console.log(result);
     return result.data;
   }
 

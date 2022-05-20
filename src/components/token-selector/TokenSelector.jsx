@@ -76,8 +76,11 @@ export function TokenSelector({ sellerWallet, onSubmitTokenSelector }) {
   };
 
   const getTokenList = () => {
+    console.log(nfts);
     const filterNfts = nfts.filter((nft) =>
-      nft.metadata.title.toUpperCase().includes(textToSearch.toUpperCase())
+      textToSearch === ""
+        ? true
+        : nft.metadata.title?.toUpperCase().includes(textToSearch.toUpperCase())
     );
     return filterNfts.map((token) => {
       return (
