@@ -66,9 +66,7 @@ export function HomeView(props) {
         </Row>
         <List>
           <Item>Esccrow Fee is {percentFee}</Item>
-          <Item>
-            Estimated max time of esccrow services is at least 90 minutes
-          </Item>
+          <Item>Estimated max time of escrow services is 90 minutes</Item>
         </List>
       </Reminder>
       <Disclaimer>

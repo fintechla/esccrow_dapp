@@ -62,7 +62,7 @@ export function StepFour({ onSubmitStepFour, data }) {
         </StepRow>
         <StepRow justifyContent={"space-between"}>
           <Data>Storage fee*</Data>
-          <Value>{"<" + "0.1"}</Value>
+          <Value>{"< " + "0.1"}</Value>
         </StepRow>
         <StepRow justifyContent={"space-between"}>
           <H5>Total</H5>
