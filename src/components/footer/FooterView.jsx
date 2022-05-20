@@ -8,7 +8,7 @@ export function FooterView() {
     <Footer>
       <Container>
         <Row alignItems="center" className="footer-content">
-          <span>&copy; 2022 FintechLab, LLC</span>
+          <span>&copy; 2022 FintechLab US, LLC</span>
           <ul>
             <li>{/* <Link to="#">Privacy Policy</Link> */}</li>
             <li>{/* <Link to="#">Terms of Service</Link> */}</li>

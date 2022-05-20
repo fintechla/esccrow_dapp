@@ -13,8 +13,11 @@ export const STLink = styled(Link)`
 `;
 
 export const ListItem = styled.li`
-  padding: 0px 40px;
+  padding: 0px 10px;
   cursor: pointer;
-  color: var(--dark);
-  font-size: 0.9rem;
+  color: rgb(88, 102, 126);
+  font-size: 0.7rem;
+  label {
+    color: var(--primary);
+  }
 `;
