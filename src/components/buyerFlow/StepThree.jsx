@@ -45,7 +45,7 @@ export function StepThree({ onSubmitStepThree, data, reset }) {
           </Tr>
           <Tr>
             <Th>Blockchain:</Th>
-            <Td>Near protocol</Td>
+            <Td>NEAR protocol</Td>
           </Tr>
           <Tr>
             <Th>Seller wallet:</Th>

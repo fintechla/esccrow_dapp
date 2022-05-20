@@ -85,7 +85,7 @@ export function SellerFlow() {
         <td>{nft_id}</td>
         <td>Seller</td>
         <td>{parsePrice}</td>
-        <td>Near</td>
+        <td>NEAR</td>
         <td>{getStatusElm()}</td>
       </tr>
     );

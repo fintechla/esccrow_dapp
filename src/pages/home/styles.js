@@ -50,4 +50,7 @@ export const PoweredBlock = styled(Row)`
 export const Disclaimer = styled.div`
   text-align: center;
   margin-top: 20px;
+  ul {
+    list-style: none;
+  }
 `;

@@ -49,7 +49,7 @@ export function NavbarView({
           <Logo />
           <MenuNav>
             <MenuItem>
-              Near Price:&nbsp; <label>${fiat.near?.usd} USD</label>
+              NEAR Price:&nbsp; <label>${fiat.near?.usd} USD</label>
             </MenuItem>
             <MenuItem>
               USN Price:&nbsp;
@@ -62,7 +62,7 @@ export function NavbarView({
           <Toolbar alignItems="center" gap="20px">
             <Button color="info" href="#">
               <Icons.Near />
-              <span>Near</span>
+              <span>NEAR</span>
             </Button>
             <Button color="primary" onClick={onClickLogin}>
               <Icons.Wallet />
