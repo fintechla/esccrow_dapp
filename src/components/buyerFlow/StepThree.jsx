@@ -67,7 +67,7 @@ export function StepThree({ onSubmitStepThree, data, reset }) {
       </Tbl>
       <Column justifyContent="center" mt="30px" alignItems="center">
         <Button size="lg" color="accent" onClick={onSubmitStepThree}>
-          Confirm Transaction
+          Confirm transaction
         </Button>
         <PoweredBlock className="powered-block">
           <span>Powered by</span> <FinchechLabLogo />

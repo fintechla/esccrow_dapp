@@ -9,6 +9,7 @@ import { ReactComponent as FinchechLabLogo } from "../../assets/images/fintechla
 import { Link } from "../fleek-router/Link";
 import { Stepbar } from "../stepbar";
 import { ReactComponent as CloseSvg } from "../../assets/icons/close.svg";
+import * as Icons from "../icons";
 
 export function StepTwo({ onSubmitStepTwo, onChangeData, data, reset }) {
   const { tokenId, contractAddress, amount, durationMinutes, sellerWallet } =
@@ -62,7 +63,7 @@ export function StepTwo({ onSubmitStepTwo, onChangeData, data, reset }) {
               id: "1",
               name: "NEAR",
               type: "Near token",
-              icon: "near-white",
+              icon: <Icons.Near2 />,
             },
           ]}
         />

@@ -61,7 +61,7 @@ export function StepFour({ onSubmitStepFour, data }) {
           <Value>0</Value>
         </StepRow>
         <StepRow justifyContent={"space-between"}>
-          <Data>Storage fee</Data>
+          <Data>Storage fee*</Data>
           <Value>{"<" + "0.1"}</Value>
         </StepRow>
         <StepRow justifyContent={"space-between"}>

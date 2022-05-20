@@ -5,8 +5,11 @@ function isEmpty(value) {
   return false;
 }
 
-export function validateStep2({ tokenId }) {
+export function validateStep2({ tokenId, amount }) {
   if (isEmpty(tokenId)) {
+    return false;
+  }
+  if (Number(amount) < 0) {
     return false;
   }
   return true;

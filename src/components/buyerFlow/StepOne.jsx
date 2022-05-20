@@ -5,6 +5,7 @@ import { Select } from "../select";
 import { Button } from "../button";
 import { PoweredBlock, TokenIdBtn } from "./styles";
 import { ReactComponent as FinchechLabLogo } from "../../assets/images/fintechlab-logo.svg";
+import * as Icons from "../icons";
 
 export function StepOne({
   onSubmitStepOne,
@@ -63,7 +64,13 @@ export function StepOne({
               id: "1",
               name: "Near",
               type: "Mainnet",
-              icon: "near-white",
+              icon: <Icons.Near2 className="icon" />,
+            },
+            {
+              id: "2",
+              name: "Terra",
+              type: "Mainnet",
+              icon: <Icons.Terra className="icon" />,
             },
           ]}
         />

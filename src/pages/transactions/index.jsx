@@ -199,7 +199,7 @@ export function Transactions({}) {
             <th>Token ID</th>
             <th>Transaction date</th>
             <th>Role</th>
-            <th>Amount</th>
+            <th>Price</th>
             <th>Currency</th>
             <th>Status</th>
           </tr>

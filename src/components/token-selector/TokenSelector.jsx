@@ -110,7 +110,7 @@ export function TokenSelector({ sellerWallet, onSubmitTokenSelector }) {
             onChange={(e) => {
               setTextToSearch(e.target.value);
             }}
-            placeholder="Buscar NFT"
+            placeholder="Search NFT"
           />
         </SearchBlock>
         <TokenList>{getTokenList()}</TokenList>
@@ -122,7 +122,7 @@ export function TokenSelector({ sellerWallet, onSubmitTokenSelector }) {
               onSubmitTokenSelector(tokenSelected);
             }}
           >
-            Confirm Selection
+            Confirm selection
           </Button>
         </Column>
       </ModalBody>
