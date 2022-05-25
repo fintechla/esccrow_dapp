@@ -9,6 +9,8 @@ export function NavbarContainer({ className, chilchen }) {
   const [themeMode, setThemeMode] = useState(utilService.getThemeMode());
   const [fiat, setFiat] = useState("");
   const [accountBalance, setAccountBalance] = useState("");
+  const [accountDropdown, setAccountDropdown] = useState(false);
+
   const walletUserText = nearService.isSigned()
     ? nearService.wallet.getAccountId()
     : "Connect Wallet";
@@ -46,9 +48,12 @@ export function NavbarContainer({ className, chilchen }) {
       onChangeMode={handleChangeMode}
       walletUserText={walletUserText}
       themeMode={themeMode}
+      accountDropdown={accountDropdown}
       onClickLogin={async () => {
         if (!nearService.isSigned()) {
           nearService.signIn();
+        } else {
+          setAccountDropdown(!accountDropdown);
         }
       }}
     />

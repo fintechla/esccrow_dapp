@@ -36,6 +36,12 @@ export class NearService {
     );
   }
 
+  async logout() {
+    await localStorage.clear();
+    this.wallet.signOut();
+    window.location.reload();
+  }
+
   async getNFTContractsByAccount(accountId) {
     const serviceUrl = `https://helper.${_CONFIG_.networkId}.near.org/account/${accountId}/likelyNFTs`;
     const result = await axios.get(serviceUrl);

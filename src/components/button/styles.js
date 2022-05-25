@@ -56,6 +56,7 @@ export const Button = styled.a`
   display: flex;
   align-items: center;
   cursor: pointer;
+  position: relative;
   ${(props) => getButtonColorStyles(props.color)}
   ${(props) => getButtonSizeStyles(props.size, props.color)}
   & > svg {
