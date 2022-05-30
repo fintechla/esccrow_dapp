@@ -5,6 +5,7 @@ import { Container } from "../container";
 import { Button } from "../button";
 import { Row } from "../row";
 import { Logo } from "../logo";
+import { AccountDropdown } from "./AccountDropdown";
 
 export function NavbarView({
   onClickLogin,
@@ -13,6 +14,7 @@ export function NavbarView({
   walletUserText,
   fiat,
   accountBalance,
+  accountDropdown,
 }) {
   function getThemeButton() {
     if (themeMode === "dark") {
@@ -67,6 +69,7 @@ export function NavbarView({
             <Button color="primary" onClick={onClickLogin}>
               <Icons.Wallet />
               <span>{walletUserText}</span>
+              {accountDropdown ? <AccountDropdown /> : ""}
             </Button>
             {getThemeButton(themeMode)}
           </Toolbar>

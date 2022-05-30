@@ -11,7 +11,6 @@ import {
   TransactionsCount,
   Table,
   RefreshButton,
-  Link,
 } from "./styles";
 import { NearService } from "../../services/NearService";
 import { navigate } from "../../components/fleek-router";
@@ -160,7 +159,7 @@ export function Transactions({}) {
           <td>{nft_id}</td>
           <td>{transactionDate.toLocaleString()}</td>
           <td>{role}</td>
-          <td>{amount}</td>
+          <td>{Number(amount).toTruncate(2)}</td>
           <td>{"NEAR"}</td>
           <td>{status}</td>
         </tr>

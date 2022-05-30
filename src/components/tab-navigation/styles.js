@@ -17,6 +17,8 @@ export const MenuItem = styled.li`
   color: var(--dark);
   ${(props) =>
     props.active ? "border-color: var(--dark);font-weight: 500;" : ""}
+
+  ${(props) => (props.disabled ? "color: var(--placeholder);" : "")}
 `;
 
 export const MenuContainer = styled(Content)`

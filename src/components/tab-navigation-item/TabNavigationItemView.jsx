@@ -1,7 +1,9 @@
 import { TabNavigationItem } from "./styles";
 
-export function TabNavigationItemView({ className, children }) {
+export function TabNavigationItemView({ className, children, disabled }) {
   return (
-    <TabNavigationItem className={className}>{children}</TabNavigationItem>
+    <TabNavigationItem className={className} disabled={disabled}>
+      {children}
+    </TabNavigationItem>
   );
 }
