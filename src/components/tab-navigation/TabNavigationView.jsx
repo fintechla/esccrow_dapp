@@ -29,9 +29,11 @@ export function TabNavigationView({ className, children }) {
       <MenuItem
         key={item.props.order}
         active={item.props.order === activeItem.props.order ? true : false}
+        disabled={item.props.disabled}
         onClick={() => {
           if (item.props.navigateTo) {
             navigate(item.props.navigateTo);
+          } else if (item.props.disabled) {
           } else {
             handleClickMenuItem(item);
           }

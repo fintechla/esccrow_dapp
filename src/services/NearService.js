@@ -3,6 +3,7 @@ import { connect, keyStores, WalletConnection, Contract } from "near-api-js";
 import { formatNearAmount } from "near-api-js/lib/utils/format";
 import { _CONFIG_ } from "../config";
 import axios from "axios";
+import { navigate } from "../components/fleek-router";
 
 export class NearService {
   constructor() {
@@ -39,6 +40,7 @@ export class NearService {
   async logout() {
     await localStorage.clear();
     this.wallet.signOut();
+    navigate("home");
     window.location.reload();
   }
 
