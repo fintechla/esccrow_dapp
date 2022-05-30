@@ -1,4 +1,5 @@
 import { NearService } from "../../services/NearService";
+import { navigate } from "../fleek-router";
 import { DropdownList, DropdownListItem } from "./styles";
 
 export function AccountDropdown() {
@@ -8,7 +9,13 @@ export function AccountDropdown() {
     <DropdownList>
       <DropdownListItem
         onClick={() => {
-          console.log("cerrarSesion");
+          navigate("transactions");
+        }}
+      >
+        My transactions
+      </DropdownListItem>
+      <DropdownListItem
+        onClick={() => {
           nearService.logout();
         }}
       >

@@ -45,7 +45,10 @@ export const DropdownList = styled.ul`
   margin-top: 5px;
   color: var(--dark);
   font-size: 0.9em;
-  padding: 10px 12px;
+  width: 100%;
 `;
 
-export const DropdownListItem = styled.li``;
+export const DropdownListItem = styled.li`
+  padding: 10px 12px;
+  width: 100%;
+`;
