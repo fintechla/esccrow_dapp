@@ -94,6 +94,7 @@ export function Transaction(props) {
     const fechaActual = new Date(Date.now());
     if (comparar(expirationDate, fechaActual)) {
       await esccrowService.cancelTransaction(transaction);
+      getTransaction();
       alert("Your transaction expired");
       return false;
     }
@@ -110,8 +111,8 @@ export function Transaction(props) {
       nearService.wallet.getAccountId() === seller_id
     ) {
       buttonText = "Send your NFT";
-      action = () => {
-        if (validateDate()) {
+      action = async () => {
+        if (await validateDate()) {
           nearService.sendToken(transaction);
         }
       };
@@ -158,25 +159,25 @@ export function Transaction(props) {
       {
         content: (
           <div>
-            {price}
+            {Number(price).toTruncate(2)}
             <NearSVG />
           </div>
         ),
       },
     ];
     if (transaction.seller_id === nearService.wallet.getAccountId()) {
-      const fee = price ? price * (transaction.fee / 1000) : "";
+      const fee = price ? price * (transaction.fee / 1000) : 0;
       let royalties = 0;
       for (const key in transaction.royalties) {
         royalties += (transaction.royalties[key] / 10000) * (price - fee);
       }
-      const neto = price ? (price - fee - royalties).toFixed(2) : "";
+      const neto = price ? price - fee - royalties : "";
       data = [
         ...data,
         {
           content: (
             <div>
-              {fee}
+              {fee.toTruncate(2)}
               <NearSVG />
             </div>
           ),
@@ -184,7 +185,7 @@ export function Transaction(props) {
         {
           content: (
             <div>
-              {royalties.toFixed(2)}
+              {royalties.toTruncate(2)}
               <NearSVG />
             </div>
           ),
@@ -192,7 +193,7 @@ export function Transaction(props) {
         {
           content: (
             <div>
-              {neto} <NearSVG />
+              {neto.toTruncate(2)} <NearSVG />
             </div>
           ),
         },

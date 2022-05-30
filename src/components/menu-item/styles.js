@@ -16,7 +16,7 @@ export const ListItem = styled.li`
   padding: 0px 10px;
   cursor: pointer;
   color: rgb(88, 102, 126);
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   label {
     color: var(--primary);
   }
