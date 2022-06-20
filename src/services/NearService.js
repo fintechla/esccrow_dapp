@@ -45,7 +45,8 @@ export class NearService {
   }
 
   async getNFTContractsByAccount(accountId) {
-    const serviceUrl = `https://helper.${_CONFIG_.networkId}.near.org/account/${accountId}/likelyNFTs`;
+    const test = _CONFIG_.networkId === "testnet" ? "testnet-" : "";
+    const serviceUrl = `https://${test}api.kitwallet.app/account/${accountId}/likelyNFTs`;
     const result = await axios.get(serviceUrl);
     return result.data;
   }
