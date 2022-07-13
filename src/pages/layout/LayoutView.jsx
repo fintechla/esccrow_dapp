@@ -18,7 +18,7 @@ export function LayoutView({ children, container }) {
   }, []);
 
   return (
-    <div className={"page-container" + " theme-" + themeMode}>
+    <div className={"page-container" + " theme-" + themeMode} style={{overflow: "auto", height: "100vh"}}>
       <Header>
         <Navbar></Navbar>
       </Header>
